@@ -5,6 +5,9 @@ object WasRunTest {
     fun main(args: Array<String>) {
 
         WasRun("testCase").`was run reports if function was run`()
+
         AssertTrueTest.`assert true on true passes`()
+        AssertTrueTest.`assert true on false fails`()
+        AssertTrueTest.`assert true on null fails`()
     }
 }
