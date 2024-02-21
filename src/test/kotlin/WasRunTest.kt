@@ -7,7 +7,8 @@ class WasRunTest() {
         @JvmStatic
         fun main(args: Array<String>) {
 
-            WasRun("testCase").`was run reports if function was run`()
+            WasRun.`was run reports if function was run`()
+            WasRun.`test setup was run`()
 
             AssertTrueTest.`assert true on true passes`()
             AssertTrueTest.`assert true on false fails`()
