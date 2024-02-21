@@ -9,6 +9,14 @@ object Assertions {
         }
     }
 
+    fun assertFalse(expression: Boolean?) {
+        if(expression == null) {
+            throwException("should have been false but was null")
+        } else if(expression) {
+            throwException("should have been false but was true")
+        }
+    }
+
     fun shouldFail(function: () -> Unit) {
         try {
             function.invoke()
@@ -24,5 +32,10 @@ object Assertions {
 
 fun Boolean?.shouldBeTrue(): Boolean?{
     Assertions.assertTrue(this)
+    return this
+}
+
+fun Boolean?.shouldBeFalse(): Boolean?{
+    Assertions.assertFalse(this)
     return this
 }
