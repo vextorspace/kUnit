@@ -1,0 +1,7 @@
+- Invoke test method
+- Invoke setup first
+- Invoke teardown afterward
+- Invoke teardown even if the test method fails
+- run multiple tests
+- report collected results
+- assertion that throws exception without jvm options
