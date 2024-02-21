@@ -10,4 +10,4 @@
   - assertEquals
   - assertClose
 - collect all tests and run
-- 
+- tell us how many pass and fail
