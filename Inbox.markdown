@@ -6,7 +6,7 @@
 - report collected results
 - assertion that throws exception without jvm options
   - ~~assertTrue~~
-  - assertFalse
+  - ~~assertFalse~~
   - assertEquals
   - assertClose
 - collect all tests and run
