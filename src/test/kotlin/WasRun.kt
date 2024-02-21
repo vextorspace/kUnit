@@ -1,6 +1,3 @@
-import assertions.shouldBeFalse
-import assertions.shouldBeTrue
-
 class WasRun() : TestCase() {
     var wasRun: Boolean = false
 

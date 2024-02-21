@@ -22,6 +22,12 @@ class TestCaseTest: TestCase() {
         test.wasSetUp.shouldBeTrue()
     }
 
+    fun `test teardown is run after`() {
+        val test = WasRun()
+        test.wasTornDown.shouldBeFalse()
+        test.run()
+        test.wasTornDown.shouldBeTrue()
+    }
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
@@ -29,6 +35,7 @@ class TestCaseTest: TestCase() {
             TestCaseTest().`was run does not report function has run if it was never called`()
             TestCaseTest().`was run reports if function was run`()
             TestCaseTest().`test setup was run`()
+            TestCaseTest().`test teardown is run after`()
 
             AssertTrueTest.`assert true on true passes`()
             AssertTrueTest.`assert true on false fails`()
