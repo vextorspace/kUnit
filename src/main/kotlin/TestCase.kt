@@ -1,13 +1,14 @@
-open class TestCase(private val testMethod: String) {
+abstract class TestCase() {
     var wasSetUp: Boolean = false
 
     open fun setUp() {
         wasSetUp = true
     }
 
+    open fun testMethod() {}
+
     fun run() {
         this.setUp()
-        val method = this::class.java.getDeclaredMethod(testMethod)
-        method.invoke(this)
+        testMethod()
     }
 }

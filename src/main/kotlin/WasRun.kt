@@ -1,7 +1,7 @@
 import assertions.shouldBeFalse
 import assertions.shouldBeTrue
 
-class WasRun(methodName: String) : TestCase(methodName) {
+class WasRun() : TestCase() {
     var wasRun: Boolean = false
 
     override fun setUp() {
@@ -9,8 +9,10 @@ class WasRun(methodName: String) : TestCase(methodName) {
         super.setUp()
     }
 
-    fun testMethod(): Unit {
+    override fun testMethod(): Unit {
         wasRun = true
         println("ran testMethod")
     }
+
+
 }
