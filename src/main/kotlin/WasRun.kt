@@ -13,20 +13,4 @@ class WasRun(methodName: String) : TestCase(methodName) {
         wasRun = true
         println("ran testMethod")
     }
-
-    companion object {
-        fun `was run reports if function was run`() {
-            val test = WasRun("testMethod")
-            test.wasRun.shouldBeFalse()
-            test.run()
-            test.wasRun.shouldBeTrue()
-        }
-
-        fun `test setup was run`() {
-            val test = WasRun("testMethod")
-            test.wasSetUp.shouldBeFalse()
-            test.run()
-            test.wasSetUp.shouldBeTrue()
-        }
-    }
 }
