@@ -21,3 +21,8 @@ object Assertions {
         throw AssertionFailedException(message)
     }
 }
+
+fun Boolean?.shouldBeTrue(): Boolean?{
+    Assertions.assertTrue(this)
+    return this
+}

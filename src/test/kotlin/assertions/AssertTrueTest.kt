@@ -3,18 +3,18 @@ package assertions
 object AssertTrueTest {
 
     fun `assert true on true passes`() {
-        Assertions.assertTrue(true)
+        true.shouldBeTrue()
     }
 
     fun `assert true on false fails`() {
         Assertions.shouldFail {
-            Assertions.assertTrue(false)
+            false.shouldBeTrue()
         }
     }
 
     fun `assert true on null fails`() {
         Assertions.shouldFail {
-            Assertions.assertTrue(null)
+            null.shouldBeTrue()
         }
     }
 }
