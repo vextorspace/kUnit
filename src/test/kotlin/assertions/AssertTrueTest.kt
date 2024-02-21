@@ -10,7 +10,7 @@ object AssertTrueTest {
         try {
             Assertions.assertTrue(false)
             throw RuntimeException("Failed to catch bad assertion")
-        } catch (ex: RuntimeException) {
+        } catch (ex: AssertionFailedException) {
 
         }
     }
@@ -19,7 +19,7 @@ object AssertTrueTest {
         try {
             Assertions.assertTrue(null)
             throw RuntimeException("Failed to catch bad assertion")
-        } catch (ex: RuntimeException) {
+        } catch (ex: AssertionFailedException) {
 
         }
     }
