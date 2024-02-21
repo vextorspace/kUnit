@@ -16,7 +16,6 @@ class WasRunTest() {
             AssertFalseTest.`assert false on true fails`()
             AssertFalseTest.`assert false on false passes`()
             AssertFalseTest.`assert false on null fails`()
-
         }
     }
 }
