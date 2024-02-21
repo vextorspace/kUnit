@@ -1,4 +1,4 @@
-- Invoke test method
+- ~~Invoke test method~~
 - Invoke setup first
 - Invoke teardown afterward
 - Invoke teardown even if the test method fails
