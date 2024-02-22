@@ -1,15 +1,5 @@
 class WasRun() : TestCase() {
-    var wasRun: Boolean = false
+    fun testMethod() {
 
-    override fun setUp() {
-        wasRun = false
-        super.setUp()
     }
-
-    override fun testMethod(): Unit {
-        wasRun = true
-        println("ran testMethod")
-    }
-
-
 }

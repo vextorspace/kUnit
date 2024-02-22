@@ -1,6 +1,6 @@
 - ~~Invoke test method~~
 - ~~Invoke setup first~~
-- Invoke teardown afterward
+- ~~Invoke teardown afterward~~
 - Invoke teardown even if the test method fails
 - run multiple tests
 - report collected results
@@ -8,6 +8,7 @@
   - ~~assertTrue~~
   - ~~assertFalse~~
   - assertEquals
-  - assertClose
+  - assertClose for doubles
+  - assertSimilar for strings
 - collect all tests and run
 - tell us how many pass and fail

@@ -17,6 +17,10 @@ object Assertions {
         }
     }
 
+    fun assertSimilar(string1: String, string2: String) {
+        
+    }
+
     fun shouldFail(function: () -> Unit) {
         try {
             function.invoke()

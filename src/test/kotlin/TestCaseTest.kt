@@ -1,7 +1,4 @@
-import assertions.AssertFalseTest
-import assertions.AssertTrueTest
-import assertions.shouldBeFalse
-import assertions.shouldBeTrue
+import assertions.*
 
 class TestCaseTest: TestCase() {
     fun `was run does not report function has run if it was never called`() {
@@ -11,39 +8,41 @@ class TestCaseTest: TestCase() {
 
     fun `was run reports if function was run`() {
         val test = WasRun()
-        test.run()
+        test.run("testMethod")
         test.wasRun.shouldBeTrue()
     }
 
     fun `test setup was run`() {
         val test = WasRun()
         test.wasSetUp.shouldBeFalse()
-        test.run()
+        test.run("testMethod")
         test.wasSetUp.shouldBeTrue()
     }
 
     fun `test teardown is run after`() {
         val test = WasRun()
         test.wasTornDown.shouldBeFalse()
-        test.run()
+        test.run("testMethod")
         test.wasTornDown.shouldBeTrue()
     }
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
 
-            TestCaseTest().`was run does not report function has run if it was never called`()
-            TestCaseTest().`was run reports if function was run`()
-            TestCaseTest().`test setup was run`()
-            TestCaseTest().`test teardown is run after`()
+            TestCaseTest().run("was run does not report function has run if it was never called")
+            TestCaseTest().run("was run reports if function was run")
+            TestCaseTest().run("test setup was run")
+            TestCaseTest().run("test teardown is run after")
 
-            AssertTrueTest.`assert true on true passes`()
-            AssertTrueTest.`assert true on false fails`()
-            AssertTrueTest.`assert true on null fails`()
+            AssertTrueTest().run("assert true on true passes")
+            AssertTrueTest().run("assert true on false fails")
+            AssertTrueTest().run("assert true on null fails")
 
-            AssertFalseTest.`assert false on true fails`()
-            AssertFalseTest.`assert false on false passes`()
-            AssertFalseTest.`assert false on null fails`()
+            AssertFalseTest().run("assert false on true fails")
+            AssertFalseTest().run("assert false on false passes")
+            AssertFalseTest().run("assert false on null fails")
+
+            AssertSimilarStringTest().run("same string is similar")
         }
     }
 }

@@ -1,6 +1,8 @@
 package assertions
 
-object AssertTrueTest {
+import TestCase
+
+class AssertTrueTest : TestCase() {
 
     fun `assert true on true passes`() {
         true.shouldBeTrue()

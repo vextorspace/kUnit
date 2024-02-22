@@ -1,20 +1,30 @@
 abstract class TestCase() {
     var wasSetUp: Boolean = false
+    var wasRun: Boolean = false
     var wasTornDown: Boolean = false
 
-    open fun setUp() {
-        wasSetUp = true
+     private fun theSetUp() {
+         wasRun = false
+
+         setUp()
+         wasSetUp = true
     }
 
-    open fun tearDown() {
+    open fun setUp() {}
+
+    private fun theTearDown() {
+        tearDown()
         wasTornDown = true
     }
 
-    open fun testMethod() {}
+    open fun tearDown() {}
 
-    fun run() {
-        this.setUp()
-        testMethod()
-        this.tearDown()
+    fun run(testMethodName: String) {
+        theSetUp()
+        val method = this::class.java.getDeclaredMethod(testMethodName)
+        method.invoke(this)
+        wasRun = true
+        println("ran $testMethodName")
+        theTearDown()
     }
 }

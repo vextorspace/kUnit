@@ -1,6 +1,8 @@
 package assertions
 
-object AssertFalseTest {
+import TestCase
+
+class AssertFalseTest: TestCase() {
     fun `assert false on true fails`() {
         Assertions.shouldFail {
             true.shouldBeFalse()
