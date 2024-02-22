@@ -14,4 +14,10 @@ class AssertEqualsTest : TestCase() {
             assertEquals(object1, object2)
         }
     }
+
+    fun `two objects that are the same reference are equal`() {
+        val object1: List<String> = listOf<String>("hi")
+        val object2: List<String> = object1
+        assertEquals(object1, object2)
+    }
 }

@@ -39,6 +39,7 @@ class TestCaseTest: TestCase() {
             AssertSimilarStringTest().run("exception should enclose strings in parenthesis")
 
             AssertEqualsTest().run("two different objects are not equal")
+            AssertEqualsTest().run("two objects that are the same reference are equal")
         }
     }
 }
