@@ -44,6 +44,7 @@ class TestCaseTest: TestCase() {
 
             AssertSimilarStringTest().run("same string is similar")
             AssertSimilarStringTest().run("string with missing a letter is not similar to another")
+            AssertSimilarStringTest().run("string differing only in case")
         }
     }
 }

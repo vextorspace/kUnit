@@ -18,4 +18,12 @@ class AssertSimilarStringTest : TestCase() {
             Assertions.assertSimilar(theOtherString, theString)
         }
     }
+
+    fun `string differing only in case`() {
+        val theString: String = "::Any ol' string::"
+        val theOtherString: String = "::ANY OL' STRING::"
+
+        Assertions.assertSimilar(theString, theOtherString)
+        Assertions.assertSimilar(theOtherString, theString)
+    }
 }
