@@ -43,6 +43,7 @@ class TestCaseTest: TestCase() {
             AssertFalseTest().run("assert false on null fails")
 
             AssertSimilarStringTest().run("same string is similar")
+            AssertSimilarStringTest().run("string with missing a letter is not similar to another")
         }
     }
 }
