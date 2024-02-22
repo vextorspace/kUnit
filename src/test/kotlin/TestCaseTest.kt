@@ -1,5 +1,6 @@
+import assertions.matchers.AssertEqualsTest
 import assertions.matchers.AssertSimilarStringTest
-import assertions.matchers.Matchers.assertSimilar
+import assertions.matchers.shouldBeSimilarTo
 import assertions.testers.AssertFalseTest
 import assertions.testers.AssertTrueTest
 import assertions.testers.Testers.assertFalse
@@ -13,7 +14,7 @@ class TestCaseTest: TestCase() {
     fun `test setup run teardown order`() {
         val test = WasRun()
         test.run("testMethod")
-        assertSimilar("setup testMethod tearDown", test.log)
+        test.log.shouldBeSimilarTo("setUp testMethod tearDown")
     }
     companion object {
         @JvmStatic
@@ -36,6 +37,8 @@ class TestCaseTest: TestCase() {
             AssertSimilarStringTest().run("string has different spacing")
             AssertSimilarStringTest().run("string has different non-alpha-numeric characters")
             AssertSimilarStringTest().run("exception should enclose strings in parenthesis")
+
+            AssertEqualsTest().run("two different objects are not equal")
         }
     }
 }

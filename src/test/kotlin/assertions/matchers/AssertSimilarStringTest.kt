@@ -3,14 +3,13 @@ package assertions.matchers
 import TestCase
 import assertions.AssertionFailedException
 import assertions.Assertions
-import assertions.matchers.Matchers.assertSimilar
 import assertions.testers.Testers.assertTrue
 
 class AssertSimilarStringTest : TestCase() {
 
     fun `same string is similar`() {
         val theString = "::ANY OL' STRING::"
-        assertSimilar(theString, theString)
+        theString.shouldBeSimilarTo(theString)
     }
 
     fun `string with missing a letter is not similar to another`() {
@@ -18,8 +17,8 @@ class AssertSimilarStringTest : TestCase() {
         val theOtherString = "::Any ol' sting::"
 
         Assertions.shouldFail {
-            assertSimilar(theString, theOtherString)
-            assertSimilar(theOtherString, theString)
+            theString.shouldBeSimilarTo(theOtherString)
+            theOtherString.shouldBeSimilarTo(theString)
         }
     }
 
@@ -27,24 +26,24 @@ class AssertSimilarStringTest : TestCase() {
         val theString: String = "::Any ol' string::"
         val theOtherString: String = "::ANY OL' STRING::"
 
-        assertSimilar(theString, theOtherString)
-        assertSimilar(theOtherString, theString)
+        theString.shouldBeSimilarTo(theOtherString)
+        theOtherString.shouldBeSimilarTo(theString)
     }
 
     fun `string has different spacing`() {
         val theString: String = "::Any ol' string::"
         val theOtherString: String = "::Any ol' string ::"
 
-        assertSimilar(theString, theOtherString)
-        assertSimilar(theOtherString, theString)
+        theString.shouldBeSimilarTo(theOtherString)
+        theOtherString.shouldBeSimilarTo(theString)
     }
 
     fun `string has different non-alpha-numeric characters`() {
         val theString: String = "::Any ol' string::"
         val theOtherString: String = "::Any ol' string!!::"
 
-        assertSimilar(theString, theOtherString)
-        assertSimilar(theOtherString, theString)
+        theString.shouldBeSimilarTo(theOtherString)
+        theOtherString.shouldBeSimilarTo(theString)
     }
 
     fun `exception should enclose strings in parenthesis`() {
@@ -52,7 +51,7 @@ class AssertSimilarStringTest : TestCase() {
         val otherString = "::Other String::"
 
         try {
-            assertSimilar(theString, otherString)
+            theString.shouldBeSimilarTo(otherString)
         } catch (exception: AssertionFailedException) {
             assertTrue("($theString) should be similar to ($otherString)".contentEquals(exception.message))
         }
