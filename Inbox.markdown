@@ -9,9 +9,12 @@
   - ~~assertFalse~~
   - assertEquals
   - assertClose for doubles
+  - assertNull
+  - assertNotNull
   - ~~assertSimilar for strings~~
   - assertContains - take out of TestCaseTest
   - assertEquals - take out of assertsimilarstringtest
   - assertStartsWith - take out of TestCaseTest
 - collect all tests and run
 - tell us how many pass and fail
+  - count how many run 

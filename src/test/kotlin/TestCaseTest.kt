@@ -1,9 +1,12 @@
 import assertions.*
+import assertions.testers.AssertFalseTest
+import assertions.testers.AssertTrueTest
+import assertions.testers.Testers.assertFalse
 
 class TestCaseTest: TestCase() {
     fun `was run does not report function has run if it was never called`() {
         val test = WasRun()
-        Assertions.assertFalse(test.log.contains("testMethod"))
+        assertFalse(test.log.contains("testMethod"))
     }
 
     fun `test setup run teardown order`() {

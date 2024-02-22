@@ -1,6 +1,7 @@
 package assertions
 
 import TestCase
+import assertions.testers.Testers.assertTrue
 
 class AssertSimilarStringTest : TestCase() {
 
@@ -50,7 +51,7 @@ class AssertSimilarStringTest : TestCase() {
         try {
             Assertions.assertSimilar(theString, otherString)
         } catch (exception: AssertionFailedException) {
-            Assertions.assertTrue("($theString) should be similar to ($otherString)".contentEquals(exception.message))
+            assertTrue("($theString) should be similar to ($otherString)".contentEquals(exception.message))
         }
     }
 }

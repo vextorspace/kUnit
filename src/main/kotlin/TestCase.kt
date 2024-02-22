@@ -22,6 +22,5 @@ abstract class TestCase() {
         log += testMethodName
         println("ran $testMethodName")
         theTearDown()
-
     }
 }

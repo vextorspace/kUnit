@@ -1,6 +1,7 @@
-package assertions
+package assertions.testers
 
 import TestCase
+import assertions.Assertions
 
 class AssertTrueTest : TestCase() {
 
