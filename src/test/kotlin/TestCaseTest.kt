@@ -1,4 +1,5 @@
-import assertions.*
+import assertions.matchers.AssertSimilarStringTest
+import assertions.matchers.Matchers.assertSimilar
 import assertions.testers.AssertFalseTest
 import assertions.testers.AssertTrueTest
 import assertions.testers.Testers.assertFalse
@@ -12,7 +13,7 @@ class TestCaseTest: TestCase() {
     fun `test setup run teardown order`() {
         val test = WasRun()
         test.run("testMethod")
-        Assertions.assertSimilar("setup testMethod tearDown", test.log)
+        assertSimilar("setup testMethod tearDown", test.log)
     }
     companion object {
         @JvmStatic
