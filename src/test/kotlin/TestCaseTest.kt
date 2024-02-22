@@ -40,6 +40,7 @@ class TestCaseTest: TestCase() {
 
             AssertEqualsTest().run("two different objects are not equal")
             AssertEqualsTest().run("two objects that are the same reference are equal")
+            AssertEqualsTest().run("two objects that are different type are not equal")
         }
     }
 }

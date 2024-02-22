@@ -20,4 +20,13 @@ class AssertEqualsTest : TestCase() {
         val object2: List<String> = object1
         assertEquals(object1, object2)
     }
+
+    fun `two objects that are different type are not equal`() {
+        val object1 = listOf<String>()
+        val other = "::Not a List::"
+
+        Assertions.shouldFail {
+            assertEquals(object1, other)
+        }
+    }
 }
