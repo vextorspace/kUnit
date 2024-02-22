@@ -1,5 +1,7 @@
 package assertions
 
+import java.lang.Character.isLetterOrDigit
+
 object Assertions {
     fun assertTrue(expression: Boolean?) {
         if(expression == null) {
@@ -26,8 +28,9 @@ object Assertions {
     private fun checkIfSimilar(string1: String, string2: String) =
         reduceStringToImportantBits(string1) != reduceStringToImportantBits(string2)
 
-    private fun reduceStringToImportantBits(string1: String) = string1.lowercase().filterNot { it.isWhitespace() }
-
+    private fun reduceStringToImportantBits(string1: String): String {
+        return string1.lowercase().filter { isLetterOrDigit(it) }
+    }
 
     fun shouldFail(function: () -> Unit) {
         try {

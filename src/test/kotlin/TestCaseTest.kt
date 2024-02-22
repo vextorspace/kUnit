@@ -46,6 +46,8 @@ class TestCaseTest: TestCase() {
             AssertSimilarStringTest().run("string with missing a letter is not similar to another")
             AssertSimilarStringTest().run("string differing only in case")
             AssertSimilarStringTest().run("string has different spacing")
+            AssertSimilarStringTest().run("string has different non-alpha-numeric characters")
+
         }
     }
 }
