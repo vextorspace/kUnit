@@ -26,4 +26,12 @@ class AssertSimilarStringTest : TestCase() {
         Assertions.assertSimilar(theString, theOtherString)
         Assertions.assertSimilar(theOtherString, theString)
     }
+
+    fun `string has different spacing`() {
+        val theString: String = "::Any ol' string::"
+        val theOtherString: String = "::Any ol' string ::"
+
+        Assertions.assertSimilar(theString, theOtherString)
+        Assertions.assertSimilar(theOtherString, theString)
+    }
 }

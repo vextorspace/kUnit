@@ -18,10 +18,16 @@ object Assertions {
     }
 
     fun assertSimilar(string1: String, string2: String) {
-        if(string1.lowercase() != string2.lowercase()) {
+        if (checkIfSimilar(string1, string2)) {
             throwException("$string1 should be similar to $string2")
         }
     }
+
+    private fun checkIfSimilar(string1: String, string2: String) =
+        reduceStringToImportantBits(string1) != reduceStringToImportantBits(string2)
+
+    private fun reduceStringToImportantBits(string1: String) = string1.lowercase().filterNot { it.isWhitespace() }
+
 
     fun shouldFail(function: () -> Unit) {
         try {
@@ -30,6 +36,7 @@ object Assertions {
         } catch (ex: AssertionFailedException) {
         }
     }
+
 
     private fun throwException(message: String) {
         throw AssertionFailedException(message)
