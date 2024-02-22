@@ -21,7 +21,7 @@ object Assertions {
 
     fun assertSimilar(string1: String, string2: String) {
         if (checkIfSimilar(string1, string2)) {
-            throwException("$string1 should be similar to $string2")
+            throwException("($string1) should be similar to ($string2)")
         }
     }
 

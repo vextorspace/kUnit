@@ -42,4 +42,15 @@ class AssertSimilarStringTest : TestCase() {
         Assertions.assertSimilar(theString, theOtherString)
         Assertions.assertSimilar(theOtherString, theString)
     }
+
+    fun `exception should enclose strings in parenthesis`() {
+        val theString = "::One String::"
+        val otherString = "::Other String::"
+
+        try {
+            Assertions.assertSimilar(theString, otherString)
+        } catch (exception: AssertionFailedException) {
+            Assertions.assertTrue("($theString) should be similar to ($otherString)".contentEquals(exception.message))
+        }
+    }
 }

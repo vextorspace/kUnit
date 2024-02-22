@@ -47,7 +47,7 @@ class TestCaseTest: TestCase() {
             AssertSimilarStringTest().run("string differing only in case")
             AssertSimilarStringTest().run("string has different spacing")
             AssertSimilarStringTest().run("string has different non-alpha-numeric characters")
-
+            AssertSimilarStringTest().run("exception should enclose strings in parenthesis")
         }
     }
 }
