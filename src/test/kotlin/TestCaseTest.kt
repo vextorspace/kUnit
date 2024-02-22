@@ -14,9 +14,8 @@ class TestCaseTest: TestCase() {
 
     fun `test setup was run`() {
         val test = WasRun()
-        test.wasSetUp.shouldBeFalse()
         test.run("testMethod")
-        test.wasSetUp.shouldBeTrue()
+        Assertions.assertSimilar("setup testMethod", test.log)
     }
 
     fun `test teardown is run after`() {
