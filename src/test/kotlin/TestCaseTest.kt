@@ -3,35 +3,20 @@ import assertions.*
 class TestCaseTest: TestCase() {
     fun `was run does not report function has run if it was never called`() {
         val test = WasRun()
-        test.wasRun.shouldBeFalse()
+        Assertions.assertFalse(test.log.contains("testMethod"))
     }
 
-    fun `was run reports if function was run`() {
+    fun `test setup run teardown order`() {
         val test = WasRun()
         test.run("testMethod")
-        test.wasRun.shouldBeTrue()
-    }
-
-    fun `test setup was run`() {
-        val test = WasRun()
-        test.run("testMethod")
-        Assertions.assertSimilar("setup testMethod", test.log)
-    }
-
-    fun `test teardown is run after`() {
-        val test = WasRun()
-        test.wasTornDown.shouldBeFalse()
-        test.run("testMethod")
-        test.wasTornDown.shouldBeTrue()
+        Assertions.assertSimilar("setup testMethod tearDown", test.log)
     }
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
 
+            TestCaseTest().run("test setup run teardown order")
             TestCaseTest().run("was run does not report function has run if it was never called")
-            TestCaseTest().run("was run reports if function was run")
-            TestCaseTest().run("test setup was run")
-            TestCaseTest().run("test teardown is run after")
 
             AssertTrueTest().run("assert true on true passes")
             AssertTrueTest().run("assert true on false fails")

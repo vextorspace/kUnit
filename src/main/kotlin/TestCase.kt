@@ -1,11 +1,7 @@
 abstract class TestCase() {
     var log: String = ""
-    var wasRun: Boolean = false
-    var wasTornDown: Boolean = false
 
      private fun theSetUp() {
-         wasRun = false
-
          setUp()
          log += "setup "
     }
@@ -14,7 +10,7 @@ abstract class TestCase() {
 
     private fun theTearDown() {
         tearDown()
-        wasTornDown = true
+        log += " tearDown"
     }
 
     open fun tearDown() {}
@@ -24,8 +20,8 @@ abstract class TestCase() {
         val method = this::class.java.getDeclaredMethod(testMethodName)
         method.invoke(this)
         log += testMethodName
-        wasRun = true
         println("ran $testMethodName")
         theTearDown()
+
     }
 }
