@@ -3,7 +3,6 @@ package assertions.matchers
 import TestCase
 import assertions.AssertionFailedException
 import assertions.Assertions
-import assertions.matchers.Matchers.assertEquals
 import assertions.testers.Testers.assertFalse
 import assertions.testers.Testers.assertTrue
 

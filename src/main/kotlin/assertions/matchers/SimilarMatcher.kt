@@ -26,4 +26,15 @@ class SimilarMatcher(val expected: String?, val actual: String?) {
     fun errorMessage() : String {
         return "expected: [$expected] but was: [$actual]"
     }
+
+    companion object {
+        fun assertSimilar(underTest: String, expected: String) {
+            SimilarMatcher(expected, underTest).testForSimilarity()
+        }
+    }
+}
+
+fun String.shouldBeSimilarTo(expected: String) : String {
+    SimilarMatcher.assertSimilar(this, expected)
+    return this
 }
