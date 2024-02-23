@@ -18,3 +18,5 @@
 - collect all tests and run
 - tell us how many pass and fail
   - count how many run 
+  - count how many fail
+- assertHasSize - remove from TestSummaryTest

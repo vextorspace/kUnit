@@ -15,12 +15,15 @@ abstract class TestCase() {
 
     open fun tearDown() {}
 
-    fun run(testMethodName: String) {
+    fun run(testMethodName: String, summary: TestSummary? = null) {
         theSetUp()
         val method = this::class.java.getDeclaredMethod(testMethodName)
         method.invoke(this)
         log += testMethodName
-        println("ran $testMethodName")
+        log += " passed"
         theTearDown()
+        summary?.let {
+            it.logs += "$log"
+        }
     }
 }

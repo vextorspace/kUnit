@@ -14,7 +14,7 @@ class TestCaseTest: TestCase() {
     fun `test setup run teardown order`() {
         val test = WasRun()
         test.run("testMethod")
-        test.log.shouldBeSimilarTo("setUp testMethod tearDown")
+        test.log.shouldBeSimilarTo("setUp testMethod passed tearDown")
     }
     companion object {
         @JvmStatic
@@ -43,6 +43,8 @@ class TestCaseTest: TestCase() {
             AssertEqualsTest().run("two objects that are different type are not equal")
             AssertEqualsTest().run("two value objects with same value are equal")
             AssertEqualsTest().run("equals failure message puts both values in string format in square brackets")
+
+            TestSummaryTest().run("collects logs of all tests run")
         }
     }
 }
