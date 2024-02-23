@@ -33,14 +33,14 @@ class AssertEqualsTest : TestCase() {
     }
 
     fun `equals failure message puts both values in string format in square brackets`() {
-        val firstObject = "::A String::"
+        val expected = "::A String::"
         val secondObject = 123
 
         try {
-            assertEquals(firstObject, secondObject)
+            secondObject.shouldBeEqualTo(expected)
+            assertEquals(expected, secondObject)
         } catch (ex: AssertionFailedException) {
-            assertFalse(ex.message.isNullOrBlank())
-            assertEquals("was [$secondObject] but expected [$firstObject]", ex.message!!)
+            assertEquals("expected: [$expected] but was: [$secondObject]", ex.message!!)
         }
     }
 
