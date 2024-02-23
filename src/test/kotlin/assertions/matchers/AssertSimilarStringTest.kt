@@ -2,7 +2,7 @@ package assertions.matchers
 
 import TestCase
 import assertions.AssertionFailedException
-import assertions.Assertions
+import assertions.AssertionFailedException.Companion.shouldFail
 
 class AssertSimilarStringTest : TestCase() {
 
@@ -15,7 +15,7 @@ class AssertSimilarStringTest : TestCase() {
         val theString = "::Any ol' string::"
         val theOtherString = "::Any ol' sting::"
 
-        Assertions.shouldFail {
+        shouldFail {
             theString.shouldBeSimilarTo(theOtherString)
             theOtherString.shouldBeSimilarTo(theString)
         }

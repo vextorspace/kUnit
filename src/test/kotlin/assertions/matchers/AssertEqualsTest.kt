@@ -2,7 +2,7 @@ package assertions.matchers
 
 import TestCase
 import assertions.AssertionFailedException
-import assertions.Assertions
+import assertions.AssertionFailedException.Companion.shouldFail
 import assertions.testers.FalseTester.Companion.assertFalse
 import assertions.testers.TrueTester.Companion.assertTrue
 
@@ -12,7 +12,7 @@ class AssertEqualsTest : TestCase() {
         val object2 = listOf<String>("hi")
 
 
-        Assertions.shouldFail {
+        shouldFail {
             object2.shouldBeEqualTo(object1)
         }
     }
@@ -27,7 +27,7 @@ class AssertEqualsTest : TestCase() {
         val object1 = listOf<String>()
         val other = "::Not a List::"
 
-        Assertions.shouldFail {
+        shouldFail {
             other.shouldBeEqualTo(object1)
         }
     }

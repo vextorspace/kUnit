@@ -1,7 +1,7 @@
 package assertions.testers
 
 import TestCase
-import assertions.Assertions
+import assertions.AssertionFailedException.Companion.shouldFail
 
 class AssertTrueTest : TestCase() {
 
@@ -10,13 +10,13 @@ class AssertTrueTest : TestCase() {
     }
 
     fun `assert true on false fails`() {
-        Assertions.shouldFail {
+        shouldFail {
             false.shouldBeTrue()
         }
     }
 
     fun `assert true on null fails`() {
-        Assertions.shouldFail {
+        shouldFail {
             null.shouldBeTrue()
         }
     }
