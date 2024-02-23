@@ -1,22 +1,22 @@
 package assertions.matchers
 
-import assertions.Assertions
+import assertions.Assertion
 
-class EqualsMatcher(val expected: Any?, val actual: Any?) {
+class EqualsMatcher(val expected: Any?, val actual: Any?): Assertion() {
 
-    fun testForEquality() {
+    override fun test() {
         if (expected != actual) {
-            Assertions.throwException(errorMessage())
+            throwException(errorMessage())
         }
     }
 
-    fun errorMessage() : String {
+    override fun errorMessage() : String {
         return "expected: [$expected] but was: [$actual]"
     }
 
     companion object {
         fun assertEquals(expected: Any?, actual: Any?) {
-            EqualsMatcher(expected, actual).testForEquality()
+            EqualsMatcher(expected, actual).test()
         }
     }
 }

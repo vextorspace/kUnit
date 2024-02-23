@@ -1,12 +1,12 @@
 package assertions.matchers
 
-import assertions.Assertions
+import assertions.Assertion
 import java.lang.Character.isLetterOrDigit
 
-class SimilarMatcher(val expected: String?, val actual: String?) {
-    fun testForSimilarity() {
+class SimilarMatcher(val expected: String?, val actual: String?) : Assertion() {
+    override fun test() {
         if (checkIfSimilar(actual, expected)) {
-            Assertions.throwException(errorMessage())
+            throwException(errorMessage())
         }
     }
 
@@ -14,22 +14,17 @@ class SimilarMatcher(val expected: String?, val actual: String?) {
         return reduceStringToImportantBits(string1) != reduceStringToImportantBits(string2)
     }
 
-    private fun oneNull(string1: String?, string2: String?) = string1 == null || string2 == null
-
-    private fun areBothNull(string1: String?, string2: String?) = (string1 == null) && (string2 == null)
-
-
     private fun reduceStringToImportantBits(string1: String?): String? {
         return string1?.lowercase()?.filter { isLetterOrDigit(it) }
     }
 
-    fun errorMessage() : String {
+    override fun errorMessage() : String {
         return "expected: [$expected] but was: [$actual]"
     }
 
     companion object {
         fun assertSimilar(underTest: String, expected: String) {
-            SimilarMatcher(expected, underTest).testForSimilarity()
+            SimilarMatcher(expected, underTest).test()
         }
     }
 }

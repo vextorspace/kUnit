@@ -8,8 +8,4 @@ object Assertions {
         } catch (ex: AssertionFailedException) {
         }
     }
-
-    fun throwException(message: String) {
-        throw AssertionFailedException(message)
-    }
 }

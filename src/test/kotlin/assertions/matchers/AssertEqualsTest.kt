@@ -3,8 +3,8 @@ package assertions.matchers
 import TestCase
 import assertions.AssertionFailedException
 import assertions.Assertions
-import assertions.testers.Testers.assertFalse
-import assertions.testers.Testers.assertTrue
+import assertions.testers.FalseTester.Companion.assertFalse
+import assertions.testers.TrueTester.Companion.assertTrue
 
 class AssertEqualsTest : TestCase() {
     fun `two different objects are not equal`() {

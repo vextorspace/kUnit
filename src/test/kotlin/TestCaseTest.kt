@@ -3,7 +3,7 @@ import assertions.matchers.AssertSimilarStringTest
 import assertions.matchers.shouldBeSimilarTo
 import assertions.testers.AssertFalseTest
 import assertions.testers.AssertTrueTest
-import assertions.testers.Testers.assertFalse
+import assertions.testers.FalseTester.Companion.assertFalse
 
 class TestCaseTest: TestCase() {
     fun `was run does not report function has run if it was never called`() {
