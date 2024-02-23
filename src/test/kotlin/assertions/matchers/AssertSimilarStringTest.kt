@@ -53,7 +53,7 @@ class AssertSimilarStringTest : TestCase() {
         try {
             theString.shouldBeSimilarTo(otherString)
         } catch (exception: AssertionFailedException) {
-            assertTrue("($theString) should be similar to ($otherString)".contentEquals(exception.message))
+            exception.message.shouldBeEqualTo("($theString) should be similar to ($otherString)")
         }
     }
 }
