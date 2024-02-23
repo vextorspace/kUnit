@@ -1,8 +1,10 @@
 package assertions.matchers
 
 import TestCase
+import assertions.AssertionFailedException
 import assertions.Assertions
 import assertions.matchers.Matchers.assertEquals
+import assertions.testers.Testers.assertFalse
 
 class AssertEqualsTest : TestCase() {
     fun `two different objects are not equal`() {
@@ -28,5 +30,25 @@ class AssertEqualsTest : TestCase() {
         Assertions.shouldFail {
             assertEquals(object1, other)
         }
+    }
+
+    fun `equals failure message puts both values in string format in square brackets`() {
+        val firstObject = "::A String::"
+        val secondObject = 123
+
+        try {
+            assertEquals(firstObject, secondObject)
+        } catch (ex: AssertionFailedException) {
+            assertFalse(ex.message.isNullOrBlank())
+            assertEquals("was [$secondObject] but expected [$firstObject]", ex.message!!)
+        }
+    }
+
+    fun `two value objects with same value are equal`() {
+        val object1 = "::A String::"
+        val other = "$object1"
+        assertFalse(object1  == other)
+
+        assertEquals(object1, other)
     }
 }

@@ -5,9 +5,9 @@ import java.lang.Character.isLetterOrDigit
 
 object Matchers {
 
-    fun assertEquals(object1: Any, other: Any) {
-        if(object1 != other)
-            Assertions.throwException("$object1 does not equal $other")
+    fun assertEquals(expected: Any, other: Any) {
+        if(expected != other)
+            Assertions.throwException("was [$other] but expected [$expected]")
     }
 
     fun assertSimilar(string1: String, string2: String) {
