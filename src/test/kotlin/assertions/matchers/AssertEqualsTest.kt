@@ -14,14 +14,14 @@ class AssertEqualsTest : TestCase() {
 
 
         Assertions.shouldFail {
-            assertEquals(object1, object2)
+            object2.shouldBeEqualTo(object1)
         }
     }
 
     fun `two objects that are the same reference are equal`() {
         val object1: List<String> = listOf<String>("hi")
         val object2: List<String> = object1
-        assertEquals(object1, object2)
+        object2.shouldBeEqualTo(object1)
     }
 
     fun `two objects that are different type are not equal`() {
@@ -29,7 +29,7 @@ class AssertEqualsTest : TestCase() {
         val other = "::Not a List::"
 
         Assertions.shouldFail {
-            assertEquals(object1, other)
+            other.shouldBeEqualTo(object1)
         }
     }
 
@@ -39,19 +39,19 @@ class AssertEqualsTest : TestCase() {
 
         try {
             secondObject.shouldBeEqualTo(expected)
-            assertEquals(expected, secondObject)
         } catch (ex: AssertionFailedException) {
-            assertEquals("expected: [$expected] but was: [$secondObject]", ex.message!!)
+            ex.message!!.shouldBeEqualTo("expected: [$expected] but was: [$secondObject]")
         }
     }
 
     fun `two value objects with same value are equal`() {
         val object1 = TestValueObject("bob")
         val other = TestValueObject("bob")
+
         assertTrue(object1 == other)
         assertFalse(object1  === other)
 
-        assertEquals(object1, other)
+        other.shouldBeEqualTo(object1)
     }
 }
 

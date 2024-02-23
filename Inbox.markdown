@@ -7,7 +7,7 @@
 - assertion that throws exception without jvm options
   - ~~assertTrue~~
   - ~~assertFalse~~
-  - assertEquals
+  - ~~assertEquals~~
   - assertClose for doubles
   - assertNull
   - assertNotNull
