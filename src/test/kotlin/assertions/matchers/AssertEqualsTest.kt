@@ -5,6 +5,7 @@ import assertions.AssertionFailedException
 import assertions.Assertions
 import assertions.matchers.Matchers.assertEquals
 import assertions.testers.Testers.assertFalse
+import assertions.testers.Testers.assertTrue
 
 class AssertEqualsTest : TestCase() {
     fun `two different objects are not equal`() {
@@ -45,10 +46,13 @@ class AssertEqualsTest : TestCase() {
     }
 
     fun `two value objects with same value are equal`() {
-        val object1 = "::A String::"
-        val other = "$object1"
-        assertFalse(object1  == other)
+        val object1 = TestValueObject("bob")
+        val other = TestValueObject("bob")
+        assertTrue(object1 == other)
+        assertFalse(object1  === other)
 
         assertEquals(object1, other)
     }
 }
+
+data class TestValueObject(val thing:String){}
