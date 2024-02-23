@@ -5,19 +5,20 @@ import assertions.Assertion
 class TrueTester(val expression: Boolean?): Assertion() {
 
     override fun test() {
-        if(expression == null || expression.not()) {
+        if(checkForFalseOrNull(expression)) {
             throwException(errorMessage())
         }
     }
 
+    private fun checkForFalseOrNull(expression: Boolean?): Boolean {
+        return expression == null || expression.not()
+    }
+
     override fun errorMessage(): String {
-        return if(expression == null) {
-            "should have been true but was null"
-        } else if(expression.not()) {
-            "should have been true but was false"
-        } else {
-            return ""
+        if(expression == null) {
+            return "should have been true but was null"
         }
+        return "should have been true but was false"
     }
 
     companion object {

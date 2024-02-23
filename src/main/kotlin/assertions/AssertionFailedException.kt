@@ -1,6 +1,6 @@
 package assertions
 
-class AssertionFailedException(message: String) : RuntimeException(message) {
+class AssertionFailedException(message: String?) : RuntimeException(message) {
     companion object {
         fun shouldFail(function: () -> Unit) {
             try {
