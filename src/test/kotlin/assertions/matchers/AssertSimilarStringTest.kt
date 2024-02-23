@@ -3,7 +3,6 @@ package assertions.matchers
 import TestCase
 import assertions.AssertionFailedException
 import assertions.Assertions
-import assertions.testers.Testers.assertTrue
 
 class AssertSimilarStringTest : TestCase() {
 
@@ -48,12 +47,12 @@ class AssertSimilarStringTest : TestCase() {
 
     fun `exception should enclose strings in parenthesis`() {
         val theString = "::One String::"
-        val otherString = "::Other String::"
+        val expected = "::Other String::"
 
         try {
-            theString.shouldBeSimilarTo(otherString)
+            theString.shouldBeSimilarTo(expected)
         } catch (exception: AssertionFailedException) {
-            exception.message.shouldBeEqualTo("($theString) should be similar to ($otherString)")
+            exception.message.shouldBeEqualTo("expected: [$expected] but was: [$theString]")
         }
     }
 }
