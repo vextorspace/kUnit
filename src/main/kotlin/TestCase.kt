@@ -3,39 +3,47 @@ import java.lang.reflect.InvocationTargetException
 abstract class TestCase() {
     var log: String = ""
 
-     private fun theSetUp() {
+     private fun theSetUp(): Boolean {
          try {
              setUp()
              log += "setup "
+             return true
          } catch (ex: Exception) {
              log += "setup --failed--"
              log += stackTraceToString(ex)
          }
+         return false
     }
 
     open fun setUp() {}
 
     private fun theTearDown() {
-        tearDown()
-        log += " tearDown"
+        try {
+            tearDown()
+            log += " tearDown"
+        } catch (ex: Exception) {
+            log += " tearDown --failed--"
+            log += stackTraceToString(ex)
+        }
     }
 
     open fun tearDown() {}
 
     fun run(testMethodName: String, summary: TestResults) {
         try {
-            theSetUp()
+            if(theSetUp()) {
 
-            val method = this::class.java.getDeclaredMethod(testMethodName)
-            try {
-                method.invoke(this)
-                log += "$testMethodName passed"
-            } catch (ex: Exception) {
-                if (ex is InvocationTargetException) {
-                    log += "$testMethodName --failed--"
-                    log += stackTraceToString(ex)
-                } else {
-                    log += "!!!!!!!!!! Unexpected exception !!!!!!!!!!!!! ${ex.message}"
+                val method = this::class.java.getDeclaredMethod(testMethodName)
+                try {
+                    method.invoke(this)
+                    log += "$testMethodName passed"
+                } catch (ex: Exception) {
+                    if (ex is InvocationTargetException) {
+                        log += "$testMethodName --failed--"
+                        log += stackTraceToString(ex)
+                    } else {
+                        log += "!!!!!!!!!! Unexpected exception !!!!!!!!!!!!! ${ex.message}"
+                    }
                 }
             }
         } catch (ex: Exception) {

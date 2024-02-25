@@ -36,4 +36,10 @@ class TestResultsTest : TestCase(){
         FailsToSetup().run("testFailedSetup", results)
         results.summary().shouldBeSimilarTo("1 run 1 failed")
     }
+
+    fun `counts a failure if exception occurs in teardown`() {
+        val results = TestResults()
+        FailsToTearDown().run("testFailedTearDown", results)
+        results.summary().shouldBeSimilarTo("1 run 1 failed")
+    }
 }

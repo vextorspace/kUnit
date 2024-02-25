@@ -4,6 +4,7 @@ import assertions.matchers.shouldBeSimilarTo
 import assertions.testers.AssertFalseTest
 import assertions.testers.AssertTrueTest
 import assertions.testers.FalseTester.Companion.assertFalse
+import assertions.testers.TrueTester.Companion.assertTrue
 
 class TestCaseTest: TestCase() {
     fun `was run does not report function has run if it was never called`() {
@@ -17,12 +18,21 @@ class TestCaseTest: TestCase() {
         test.log.shouldBeSimilarTo("setUp testMethod passed tearDown")
     }
 
+    fun `if setup fails do not run test but do run teardown`() {
+        val test = FailsToSetup()
+        val functionName = "testFailedSetup"
+        test.run(functionName, TestResults())
+        assertFalse(test.log.contains(functionName))
+        assertTrue(test.log.contains("tearDown"))
+    }
+
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
             val results = TestResults()
             TestCaseTest().run("test setup run teardown order", results)
             TestCaseTest().run("was run does not report function has run if it was never called", results)
+            TestCaseTest().run("if setup fails do not run test but do run teardown", results)
 
             AssertTrueTest().run("assert true on true passes", results)
             AssertTrueTest().run("assert true on false fails", results)
@@ -49,6 +59,7 @@ class TestCaseTest: TestCase() {
             TestResultsTest().run("counts number of tests run", results)
             TestResultsTest().run("counts number of tests failed", results)
             TestResultsTest().run("counts a failure if exception occurs in setup", results)
+            TestResultsTest().run("counts a failure if exception occurs in teardown", results)
 
             println(results.summary())
             results.logs.forEach {
