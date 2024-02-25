@@ -1,3 +1,5 @@
+import java.lang.reflect.InvocationTargetException
+
 abstract class TestCase() {
     var log: String = ""
 
@@ -18,12 +20,28 @@ abstract class TestCase() {
     fun run(testMethodName: String, summary: TestResults) {
         theSetUp()
         val method = this::class.java.getDeclaredMethod(testMethodName)
-        method.invoke(this)
-        log += testMethodName
-        log += " passed"
+        try {
+            method.invoke(this)
+            log += "$testMethodName passed"
+        } catch (ex: Exception) {
+            if(ex is InvocationTargetException) {
+                log += "$testMethodName --failed--"
+                log += stackTraceToString(ex)
+            } else {
+                log += "!!!!!!!!!! Unexpected exception !!!!!!!!!!!!! ${ex.message}"
+            }
+        }
         theTearDown()
         summary.let {
-            it.logs += "$log"
+            it.logs += log
         }
+    }
+
+    private fun stackTraceToString(ex: InvocationTargetException): String {
+        var log = ""
+        log += System.lineSeparator()
+        log += ex.cause?.message ?: ex.message
+        log += (ex.cause?.stackTrace ?: ex.stackTrace).map { "  " + it.toString() }.joinToString(System.lineSeparator())
+        return log
     }
 }

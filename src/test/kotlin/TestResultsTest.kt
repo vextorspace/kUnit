@@ -24,4 +24,10 @@ class TestResultsTest : TestCase(){
 
         results.summary().shouldBeSimilarTo("1 run 0 failed")
     }
+
+    fun `counts number of tests failed`() {
+        val results = TestResults()
+        WasRun().run("testFailedMethod", results)
+        results.summary().shouldBeSimilarTo("1 run 1 failed")
+    }
 }

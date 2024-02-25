@@ -46,7 +46,7 @@ class TestCaseTest: TestCase() {
 
             TestResultsTest().run("collects logs of all tests run", results)
             TestResultsTest().run("counts number of tests run", results)
-
+            TestResultsTest().run("counts number of tests failed", results)
             println(results.summary())
             results.logs.forEach {
                 println(it)

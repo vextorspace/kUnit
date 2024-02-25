@@ -1,3 +1,5 @@
+import assertions.AssertionFailedException
+
 class WasRun() : TestCase() {
     fun testMethod() {
 
@@ -5,5 +7,9 @@ class WasRun() : TestCase() {
 
     fun testMethod2() {
 
+    }
+
+    fun testFailedMethod() {
+        throw RuntimeException("Test failed")
     }
 }
