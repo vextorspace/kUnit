@@ -6,11 +6,11 @@ abstract class TestCase() {
      private fun theSetUp(): Boolean {
          try {
              setUp()
-             log += "setup "
+             log("setup ")
              return true
          } catch (ex: Exception) {
-             log += "setup --failed--"
-             log += stackTraceToString(ex)
+             log("setup --failed--")
+             log(stackTraceToString(ex))
          }
          return false
     }
@@ -20,10 +20,10 @@ abstract class TestCase() {
     private fun theTearDown() {
         try {
             tearDown()
-            log += " tearDown"
+            log(" tearDown")
         } catch (ex: Exception) {
-            log += " tearDown --failed--"
-            log += stackTraceToString(ex)
+            log(" tearDown --failed--")
+            log(stackTraceToString(ex))
         }
     }
 
@@ -36,13 +36,13 @@ abstract class TestCase() {
                 val method = this::class.java.getDeclaredMethod(testMethodName)
                 try {
                     method.invoke(this)
-                    log += "$testMethodName passed"
+                    log("$testMethodName passed")
                 } catch (ex: Exception) {
                     if (ex is InvocationTargetException) {
-                        log += "$testMethodName --failed--"
-                        log += stackTraceToString(ex)
+                        log("$testMethodName --failed--")
+                        log(stackTraceToString(ex))
                     } else {
-                        log += "!!!!!!!!!! Unexpected exception !!!!!!!!!!!!! ${ex.message}"
+                        log("!!!!!!!!!! Unexpected exception !!!!!!!!!!!!! ${ex.message}")
                     }
                 }
             }
@@ -53,6 +53,10 @@ abstract class TestCase() {
         summary.let {
             it.logs += log
         }
+    }
+
+    private fun log(message: String) {
+        log += message
     }
 
     private fun stackTraceToString(ex: Exception): String {

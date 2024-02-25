@@ -22,4 +22,4 @@
 - assertHasSize - remove from TestSummaryTest
 - ~~count setup failure as failure~~
 - ~~count teardown failure as failure~~
-- do not run test if setup fails but still run teardown
+- ~~do not run test if setup fails but still run teardown~~
