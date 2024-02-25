@@ -1,19 +1,36 @@
-import java.lang.reflect.InvocationTargetException
-
 abstract class TestCase(val testMethodName: String) {
     var log: String = ""
 
-     private fun theSetUp(): Boolean {
+     protected fun theSetUp(): Boolean {
          return runAndLog("setup ", ""){setUp()}
      }
 
     open fun setUp() {}
 
-    private fun theTearDown() {
+    protected fun theTearDown() {
         runAndLog(" tearDown", ""){tearDown()}
     }
 
     open fun tearDown() {}
+
+    fun run(results: TestResults) {
+        if(theSetUp()) {
+            runAndLogTest(results)
+        }
+        theTearDown()
+        logToResults(results)
+    }
+
+    open fun logToResults(results: TestResults) {
+        results.logs += log
+    }
+
+    open fun runAndLogTest(results: TestResults) {
+        runAndLog(testMethodName, " passed"){
+            val method = this::class.java.getDeclaredMethod(testMethodName)
+            method.invoke(this)
+        }
+    }
 
     private fun runAndLog(label: String, postLabel: String, toRun: () -> Unit ): Boolean {
         try {
@@ -24,24 +41,6 @@ abstract class TestCase(val testMethodName: String) {
             logException(label, ex)
         }
         return false
-    }
-
-    fun run(summary: TestResults) {
-            if(theSetUp()) {
-                runAndLogTestMethod(testMethodName)
-            }
-        theTearDown()
-        summary.let {
-            it.logs += log
-        }
-    }
-
-    private fun runAndLogTestMethod(testMethodName: String) {
-
-        runAndLog(testMethodName, " passed"){
-            val method = this::class.java.getDeclaredMethod(testMethodName)
-            method.invoke(this)
-        }
     }
 
     private fun logException(whatFailed: String, ex: Exception) {
