@@ -4,28 +4,27 @@ abstract class TestCase() {
     var log: String = ""
 
      private fun theSetUp(): Boolean {
-         try {
-             setUp()
-             log("setup ")
-             return true
-         } catch (ex: Exception) {
-             logException("setup", ex)
-         }
-         return false
-    }
+         return runAndLog("setup "){setUp()}
+     }
 
     open fun setUp() {}
 
     private fun theTearDown() {
-        try {
-            tearDown()
-            log(" tearDown")
-        } catch (ex: Exception) {
-            logException(" tearDown", ex)
-        }
+        runAndLog(" tearDown"){tearDown()}
     }
 
     open fun tearDown() {}
+
+    private fun runAndLog(label: String, toRun: () -> Unit ): Boolean {
+        try {
+            toRun.invoke()
+            log(label)
+            return true
+        } catch (ex: Exception) {
+            logException(label, ex)
+        }
+        return false
+    }
 
     fun run(testMethodName: String, summary: TestResults) {
             if(theSetUp()) {
