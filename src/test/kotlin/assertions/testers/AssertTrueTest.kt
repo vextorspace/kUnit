@@ -3,7 +3,7 @@ package assertions.testers
 import TestCase
 import assertions.AssertionFailedException.Companion.shouldFail
 
-class AssertTrueTest : TestCase() {
+class AssertTrueTest(testMethodName: String) : TestCase(testMethodName) {
 
     fun `assert true on true passes`() {
         true.shouldBeTrue()

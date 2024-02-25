@@ -6,7 +6,7 @@ import assertions.AssertionFailedException.Companion.shouldFail
 import assertions.testers.FalseTester.Companion.assertFalse
 import assertions.testers.TrueTester.Companion.assertTrue
 
-class AssertEqualsTest : TestCase() {
+class AssertEqualsTest(testMethodName: String) : TestCase(testMethodName) {
     fun `two different objects are not equal`() {
         val object1 = listOf<String>()
         val object2 = listOf<String>("hi")

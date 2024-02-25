@@ -4,7 +4,7 @@ import TestCase
 import assertions.AssertionFailedException
 import assertions.AssertionFailedException.Companion.shouldFail
 
-class AssertSimilarStringTest : TestCase() {
+class AssertSimilarStringTest(testMethodName: String) : TestCase(testMethodName) {
 
     fun `same string is similar`() {
         val theString = "::ANY OL' STRING::"

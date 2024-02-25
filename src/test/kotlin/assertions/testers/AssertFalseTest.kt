@@ -3,7 +3,7 @@ package assertions.testers
 import TestCase
 import assertions.AssertionFailedException.Companion.shouldFail
 
-class AssertFalseTest: TestCase() {
+class AssertFalseTest(testMethodName: String) : TestCase(testMethodName) {
     fun `assert false on true fails`() {
         shouldFail {
             true.shouldBeFalse()

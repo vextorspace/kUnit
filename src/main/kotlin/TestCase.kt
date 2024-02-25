@@ -1,6 +1,6 @@
 import java.lang.reflect.InvocationTargetException
 
-abstract class TestCase() {
+abstract class TestCase(val testMethodName: String) {
     var log: String = ""
 
      private fun theSetUp(): Boolean {
@@ -26,7 +26,7 @@ abstract class TestCase() {
         return false
     }
 
-    fun run(testMethodName: String, summary: TestResults) {
+    fun run(summary: TestResults) {
             if(theSetUp()) {
                 runAndLogTestMethod(testMethodName)
             }

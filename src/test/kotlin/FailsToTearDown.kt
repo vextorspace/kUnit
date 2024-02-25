@@ -1,4 +1,4 @@
-class FailsToTearDown: TestCase() {
+class FailsToTearDown(testMethodName: String): TestCase(testMethodName) {
 
     override fun tearDown() {
         throw RuntimeException("whoopsie-daisy")
