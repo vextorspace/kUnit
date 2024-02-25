@@ -9,8 +9,7 @@ abstract class TestCase() {
              log("setup ")
              return true
          } catch (ex: Exception) {
-             log("setup --failed--")
-             log(stackTraceToString(ex))
+             logException("setup", ex)
          }
          return false
     }
@@ -22,37 +21,39 @@ abstract class TestCase() {
             tearDown()
             log(" tearDown")
         } catch (ex: Exception) {
-            log(" tearDown --failed--")
-            log(stackTraceToString(ex))
+            logException(" tearDown", ex)
         }
     }
 
     open fun tearDown() {}
 
     fun run(testMethodName: String, summary: TestResults) {
-        try {
             if(theSetUp()) {
-
-                val method = this::class.java.getDeclaredMethod(testMethodName)
-                try {
-                    method.invoke(this)
-                    log("$testMethodName passed")
-                } catch (ex: Exception) {
-                    if (ex is InvocationTargetException) {
-                        log("$testMethodName --failed--")
-                        log(stackTraceToString(ex))
-                    } else {
-                        log("!!!!!!!!!! Unexpected exception !!!!!!!!!!!!! ${ex.message}")
-                    }
-                }
+                runAndLogTestMethod(testMethodName)
             }
-        } catch (ex: Exception) {
-
-        }
         theTearDown()
         summary.let {
             it.logs += log
         }
+    }
+
+    private fun runAndLogTestMethod(testMethodName: String) {
+        val method = this::class.java.getDeclaredMethod(testMethodName)
+        try {
+            method.invoke(this)
+            log("$testMethodName passed")
+        } catch (ex: Exception) {
+            if (ex is InvocationTargetException) {
+                logException(testMethodName, ex)
+            } else {
+                log("!!!!!!!!!! Unexpected exception !!!!!!!!!!!!! ${ex.message}")
+            }
+        }
+    }
+
+    private fun logException(whatFailed: String, ex: Exception) {
+        log("$whatFailed --failed--")
+        log(stackTraceToString(ex))
     }
 
     private fun log(message: String) {
