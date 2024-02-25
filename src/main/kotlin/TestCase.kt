@@ -4,21 +4,21 @@ abstract class TestCase() {
     var log: String = ""
 
      private fun theSetUp(): Boolean {
-         return runAndLog("setup "){setUp()}
+         return runAndLog("setup ", ""){setUp()}
      }
 
     open fun setUp() {}
 
     private fun theTearDown() {
-        runAndLog(" tearDown"){tearDown()}
+        runAndLog(" tearDown", ""){tearDown()}
     }
 
     open fun tearDown() {}
 
-    private fun runAndLog(label: String, toRun: () -> Unit ): Boolean {
+    private fun runAndLog(label: String, postLabel: String, toRun: () -> Unit ): Boolean {
         try {
             toRun.invoke()
-            log(label)
+            log(label + postLabel)
             return true
         } catch (ex: Exception) {
             logException(label, ex)
@@ -37,16 +37,10 @@ abstract class TestCase() {
     }
 
     private fun runAndLogTestMethod(testMethodName: String) {
-        val method = this::class.java.getDeclaredMethod(testMethodName)
-        try {
+
+        runAndLog(testMethodName, " passed"){
+            val method = this::class.java.getDeclaredMethod(testMethodName)
             method.invoke(this)
-            log("$testMethodName passed")
-        } catch (ex: Exception) {
-            if (ex is InvocationTargetException) {
-                logException(testMethodName, ex)
-            } else {
-                log("!!!!!!!!!! Unexpected exception !!!!!!!!!!!!! ${ex.message}")
-            }
         }
     }
 
