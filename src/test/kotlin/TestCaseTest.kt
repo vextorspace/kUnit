@@ -13,38 +13,45 @@ class TestCaseTest: TestCase() {
 
     fun `test setup run teardown order`() {
         val test = WasRun()
-        test.run("testMethod")
+        test.run("testMethod", TestResults())
         test.log.shouldBeSimilarTo("setUp testMethod passed tearDown")
     }
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
+            val results = TestResults()
+            TestCaseTest().run("test setup run teardown order", results)
+            TestCaseTest().run("was run does not report function has run if it was never called", results)
 
-            TestCaseTest().run("test setup run teardown order")
-            TestCaseTest().run("was run does not report function has run if it was never called")
+            AssertTrueTest().run("assert true on true passes", results)
+            AssertTrueTest().run("assert true on false fails", results)
+            AssertTrueTest().run("assert true on null fails", results)
 
-            AssertTrueTest().run("assert true on true passes")
-            AssertTrueTest().run("assert true on false fails")
-            AssertTrueTest().run("assert true on null fails")
+            AssertFalseTest().run("assert false on true fails", results)
+            AssertFalseTest().run("assert false on false passes", results)
+            AssertFalseTest().run("assert false on null fails", results)
 
-            AssertFalseTest().run("assert false on true fails")
-            AssertFalseTest().run("assert false on false passes")
-            AssertFalseTest().run("assert false on null fails")
+            AssertSimilarStringTest().run("same string is similar", results)
+            AssertSimilarStringTest().run("string with missing a letter is not similar to another", results)
+            AssertSimilarStringTest().run("string differing only in case", results)
+            AssertSimilarStringTest().run("string has different spacing", results)
+            AssertSimilarStringTest().run("string has different non-alpha-numeric characters", results)
+            AssertSimilarStringTest().run("exception should enclose strings in parenthesis", results)
 
-            AssertSimilarStringTest().run("same string is similar")
-            AssertSimilarStringTest().run("string with missing a letter is not similar to another")
-            AssertSimilarStringTest().run("string differing only in case")
-            AssertSimilarStringTest().run("string has different spacing")
-            AssertSimilarStringTest().run("string has different non-alpha-numeric characters")
-            AssertSimilarStringTest().run("exception should enclose strings in parenthesis")
+            AssertEqualsTest().run("two different objects are not equal", results)
+            AssertEqualsTest().run("two objects that are the same reference are equal", results)
+            AssertEqualsTest().run("two objects that are different type are not equal", results)
+            AssertEqualsTest().run("two value objects with same value are equal", results)
+            AssertEqualsTest().run("equals failure message puts both values in string format in square brackets", results)
 
-            AssertEqualsTest().run("two different objects are not equal")
-            AssertEqualsTest().run("two objects that are the same reference are equal")
-            AssertEqualsTest().run("two objects that are different type are not equal")
-            AssertEqualsTest().run("two value objects with same value are equal")
-            AssertEqualsTest().run("equals failure message puts both values in string format in square brackets")
+            TestResultsTest().run("collects logs of all tests run", results)
+            TestResultsTest().run("counts number of tests run", results)
 
-            TestSummaryTest().run("collects logs of all tests run")
+            println(results.summary())
+            results.logs.forEach {
+                println(it)
+            }
+            println(results.summary())
         }
     }
 }
