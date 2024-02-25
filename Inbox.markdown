@@ -4,8 +4,8 @@
 - ~~Invoke teardown even if the test method fails~~
 - run multiple tests without specifying them all in a file
   - ~~run a suite of tests~~
-  - find all methods in a class with Test annotation and run them
-    - ~~find all methods in a class with Test annotation~~ 
+  - ~~find all methods in a class with Test annotation and run them~~
+    - ~~find all methods in a class with Test annotation~~
   - find all classes in a dir ending in Test and run all tests in them
   - make a runner TestRunner that runs all in a dir or a single test
 - ~~report collected results~~!

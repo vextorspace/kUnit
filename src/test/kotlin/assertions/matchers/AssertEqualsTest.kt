@@ -1,12 +1,14 @@
 package assertions.matchers
 
 import TestCase
+import annotations.Test
 import assertions.AssertionFailedException
 import assertions.AssertionFailedException.Companion.shouldFail
 import assertions.testers.FalseTester.Companion.assertFalse
 import assertions.testers.TrueTester.Companion.assertTrue
 
 class AssertEqualsTest(testMethodName: String) : TestCase(testMethodName) {
+    @Test
     fun `two different objects are not equal`() {
         val object1 = listOf<String>()
         val object2 = listOf<String>("hi")
@@ -17,12 +19,14 @@ class AssertEqualsTest(testMethodName: String) : TestCase(testMethodName) {
         }
     }
 
+    @Test
     fun `two objects that are the same reference are equal`() {
         val object1: List<String> = listOf<String>("hi")
         val object2: List<String> = object1
         object2.shouldBeEqualTo(object1)
     }
 
+    @Test
     fun `two objects that are different type are not equal`() {
         val object1 = listOf<String>()
         val other = "::Not a List::"
@@ -32,6 +36,7 @@ class AssertEqualsTest(testMethodName: String) : TestCase(testMethodName) {
         }
     }
 
+    @Test
     fun `equals failure message puts both values in string format in square brackets`() {
         val expected = "::A String::"
         val secondObject = 123
@@ -43,6 +48,7 @@ class AssertEqualsTest(testMethodName: String) : TestCase(testMethodName) {
         }
     }
 
+    @Test
     fun `two value objects with same value are equal`() {
         val object1 = TestValueObject("bob")
         val other = TestValueObject("bob")

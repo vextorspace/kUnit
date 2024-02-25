@@ -1,3 +1,5 @@
+import annotations.TestFinder
+
 class TestSuite : TestCase("suite"){
     private val tests = mutableListOf<TestCase>()
 
@@ -14,4 +16,7 @@ class TestSuite : TestCase("suite"){
     }
 
     override fun logToResults(results: TestResults) {}
+    fun <T> addAll(classToSearch: Class<T>) {
+        tests.addAll(TestFinder<T>(classToSearch).findTests())
+    }
 }
