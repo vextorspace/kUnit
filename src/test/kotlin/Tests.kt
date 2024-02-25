@@ -1,3 +1,4 @@
+import annotations.TestAnnotationTest
 import assertions.matchers.AssertEqualsTest
 import assertions.matchers.AssertSimilarStringTest
 import assertions.testers.AssertFalseTest
@@ -45,6 +46,7 @@ object Tests {
         suite.add(TestSuiteTest("suite add function adds test case to list"))
         suite.add(TestSuiteTest("suite with 1 good test and one bad tests runs both"))
 
+        suite.add(TestAnnotationTest("finds only method in WasRun with Test annotation"))
         suite.run(results)
 
         println(results.summary())
