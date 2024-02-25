@@ -16,6 +16,7 @@ class TestCaseTest: TestCase() {
         test.run("testMethod", TestResults())
         test.log.shouldBeSimilarTo("setUp testMethod passed tearDown")
     }
+
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
@@ -47,6 +48,8 @@ class TestCaseTest: TestCase() {
             TestResultsTest().run("collects logs of all tests run", results)
             TestResultsTest().run("counts number of tests run", results)
             TestResultsTest().run("counts number of tests failed", results)
+            TestResultsTest().run("counts a failure if exception occurs in setup", results)
+
             println(results.summary())
             results.logs.forEach {
                 println(it)

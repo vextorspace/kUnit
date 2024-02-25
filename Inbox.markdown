@@ -1,7 +1,7 @@
 - ~~Invoke test method~~
 - ~~Invoke setup first~~
 - ~~Invoke teardown afterward~~
-- Invoke teardown even if the test method fails
+- ~~Invoke teardown even if the test method fails~~
 - run multiple tests
 - ~~report collected results~~!
 - assertion that throws exception without jvm options
@@ -16,7 +16,9 @@
   - ~~assertEquals - take out of assertsimilarstringtest~~
   - assertStartsWith - take out of TestCaseTest
 - collect all tests and run
-- tell us how many pass and fail
+- ~~tell us how many pass and fail~~
   - ~~count how many run~~ 
   - ~~count how many fail~~
 - assertHasSize - remove from TestSummaryTest
+- ~~count setup failure as failure~~
+- count teardown failure as failure

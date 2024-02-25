@@ -4,8 +4,13 @@ abstract class TestCase() {
     var log: String = ""
 
      private fun theSetUp() {
-         setUp()
-         log += "setup "
+         try {
+             setUp()
+             log += "setup "
+         } catch (ex: Exception) {
+             log += "setup --failed--"
+             log += stackTraceToString(ex)
+         }
     }
 
     open fun setUp() {}
@@ -18,18 +23,23 @@ abstract class TestCase() {
     open fun tearDown() {}
 
     fun run(testMethodName: String, summary: TestResults) {
-        theSetUp()
-        val method = this::class.java.getDeclaredMethod(testMethodName)
         try {
-            method.invoke(this)
-            log += "$testMethodName passed"
-        } catch (ex: Exception) {
-            if(ex is InvocationTargetException) {
-                log += "$testMethodName --failed--"
-                log += stackTraceToString(ex)
-            } else {
-                log += "!!!!!!!!!! Unexpected exception !!!!!!!!!!!!! ${ex.message}"
+            theSetUp()
+
+            val method = this::class.java.getDeclaredMethod(testMethodName)
+            try {
+                method.invoke(this)
+                log += "$testMethodName passed"
+            } catch (ex: Exception) {
+                if (ex is InvocationTargetException) {
+                    log += "$testMethodName --failed--"
+                    log += stackTraceToString(ex)
+                } else {
+                    log += "!!!!!!!!!! Unexpected exception !!!!!!!!!!!!! ${ex.message}"
+                }
             }
+        } catch (ex: Exception) {
+
         }
         theTearDown()
         summary.let {
@@ -37,7 +47,7 @@ abstract class TestCase() {
         }
     }
 
-    private fun stackTraceToString(ex: InvocationTargetException): String {
+    private fun stackTraceToString(ex: Exception): String {
         var log = ""
         log += System.lineSeparator()
         log += ex.cause?.message ?: ex.message

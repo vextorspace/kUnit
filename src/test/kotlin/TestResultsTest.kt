@@ -30,4 +30,10 @@ class TestResultsTest : TestCase(){
         WasRun().run("testFailedMethod", results)
         results.summary().shouldBeSimilarTo("1 run 1 failed")
     }
+
+    fun `counts a failure if exception occurs in setup`() {
+        val results = TestResults()
+        FailsToSetup().run("testFailedSetup", results)
+        results.summary().shouldBeSimilarTo("1 run 1 failed")
+    }
 }
