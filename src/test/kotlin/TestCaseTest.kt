@@ -61,6 +61,8 @@ class TestCaseTest: TestCase() {
             TestResultsTest().run("counts a failure if exception occurs in setup", results)
             TestResultsTest().run("counts a failure if exception occurs in teardown", results)
 
+            TestSuiteTest().run("empty suite runs no tests", results)
+            
             println(results.summary())
             results.logs.forEach {
                 println(it)
