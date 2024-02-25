@@ -5,6 +5,8 @@ import assertions.matchers.AssertEqualsTest
 import assertions.matchers.AssertSimilarStringTest
 import assertions.testers.AssertFalseTest
 import assertions.testers.AssertTrueTest
+import classes.TestClassFinderTest
+import classes.TestFilesTest
 
 object Tests {
     @JvmStatic
@@ -20,7 +22,8 @@ object Tests {
         suite.addAll(TestResultsTest::class.java)
         suite.addAll(TestSuiteTest::class.java)
         suite.addAll(TestAnnotationTest::class.java)
-
+        suite.addAll(TestClassFinderTest::class.java)
+        suite.addAll(TestFilesTest::class.java)
         suite.run(results)
 
         results.printResults()
