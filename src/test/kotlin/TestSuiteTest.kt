@@ -14,10 +14,10 @@ class TestSuiteTest(testMethodName: String) : TestCase(testMethodName) {
     @Test
     fun `suite add function adds test case to list`() {
         val suite = TestSuite()
-        val test = WasRun("testMethod")
+        val test = TestRunner(WasRun("testMethod"), "testMethod")
         suite.add(test)
-        suite.tests().size.shouldBeEqualTo(1)
-        suite.tests()[0].shouldBeEqualTo(test)
+        suite.testRunners().size.shouldBeEqualTo(1)
+        suite.testRunners()[0].shouldBeEqualTo(test)
     }
 
     @Test

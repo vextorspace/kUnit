@@ -2,6 +2,11 @@ import annotations.TestFinder
 
 class TestSuite : TestCase("suite"){
     private val tests = mutableListOf<TestCase>()
+    private val testRunners = mutableListOf<TestRunner>()
+
+    fun testRunners() : List<TestRunner> {
+        return testRunners.toList()
+    }
 
     fun tests() : List<TestCase> {
         return tests.toList()
@@ -9,6 +14,10 @@ class TestSuite : TestCase("suite"){
 
     fun add(test: TestCase) {
         tests.add(test)
+    }
+
+    fun add(test: TestRunner) {
+        testRunners.add(test)
     }
 
     override fun runAndLogTest(results: TestResults) {
