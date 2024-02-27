@@ -20,6 +20,7 @@ object Tests {
         suite.addAll(TestResultsTest::class.java)
         suite.addAll(TestSuiteTest::class.java)
         suite.addAll(TestAnnotationTest::class.java)
+        suite.addAll(TestRunnerTest::class.java)
 
         suite.run(results)
 
