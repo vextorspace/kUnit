@@ -1,21 +1,27 @@
 package annotations
 
 import TestCase
+import TestRunner
 import java.lang.reflect.Method
 
-class TestFinder<T>(val clazz: Class<T>) {
+class TestFinder<T>(val testClass: Class<T>) {
 
-    fun findTests(): List<TestCase> {
-        return clazz.methods.filter { it.isAnnotationPresent(Test::class.java) }
-            .map { testCaseFromMethod(it) }
+    fun findTests(): List<TestRunner> {
+        return testClass.methods
+            .filter { it.isAnnotationPresent(Test::class.java) }
+            .map { testRunnerFromMethod(it) }
             .filterNotNull()
             .toList()
     }
 
-    private fun testCaseFromMethod(it: Method): TestCase? {
-        return it.declaringClass
+    private fun testRunnerFromMethod(method: Method): TestRunner? {
+        return (testCaseFromMethod(method))?.let { TestRunner(it, method.name) }
+    }
+
+    private fun testCaseFromMethod(method: Method): TestCase? {
+        return method.declaringClass
             .getConstructor(String::class.java)
-            ?.newInstance(it.name)
+            ?.newInstance(method.name)
                 as? TestCase
     }
 

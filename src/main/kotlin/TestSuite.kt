@@ -27,6 +27,6 @@ class TestSuite : TestCase("suite"){
 
     override fun logToResults(results: TestResults) {}
     fun <T> addAll(classToSearch: Class<T>) {
-        tests.addAll(TestFinder<T>(classToSearch).findTests())
+        testRunners.addAll(TestFinder<T>(classToSearch).findTests())
     }
 }
