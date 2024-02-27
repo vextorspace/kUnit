@@ -24,8 +24,8 @@ class TestSuiteTest(testMethodName: String) : TestCase(testMethodName) {
     fun `suite with 1 good test and one bad tests runs both`() {
         val results: TestResults = TestResults()
         val suite: TestSuite = TestSuite()
-        suite.add(WasRun("testFailedMethod"))
-        suite.add(WasRun("testMethod"))
+        suite.add(TestRunner(WasRun("testFailedMethod"), "testFailedMethod"))
+        suite.add(TestRunner(WasRun("testMethod"), "testMethod"))
         suite.run(results)
         results.summary().shouldBeSimilarTo("2 run 1 failed")
     }

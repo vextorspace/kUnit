@@ -22,6 +22,7 @@ class TestSuite : TestCase("suite"){
 
     override fun runAndLogTest(results: TestResults) {
         tests().forEach { it.run(results) }
+        testRunners().forEach { it.run(results) }
     }
 
     override fun logToResults(results: TestResults) {}
