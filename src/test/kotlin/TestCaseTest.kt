@@ -1,9 +1,5 @@
 import annotations.Test
-import assertions.matchers.AssertEqualsTest
-import assertions.matchers.AssertSimilarStringTest
 import assertions.matchers.shouldBeSimilarTo
-import assertions.testers.AssertFalseTest
-import assertions.testers.AssertTrueTest
 import assertions.testers.FalseTester.Companion.assertFalse
 import assertions.testers.TrueTester.Companion.assertTrue
 
@@ -18,7 +14,12 @@ class TestCaseTest(testMethodName: String): TestCase(testMethodName) {
     @Test
     fun `test setup run teardown order`() {
         val test = WasRun("testMethod")
-        test.run(TestResults())
+        val results = TestResults()
+        if (test.theSetUp()) {
+            test.runAndLogTest(results)
+        }
+        test.theTearDown()
+        test.logToResults(results)
         test.log.shouldBeSimilarTo("setUp testMethod passed tearDown")
     }
 
@@ -26,7 +27,12 @@ class TestCaseTest(testMethodName: String): TestCase(testMethodName) {
     fun `if setup fails do not run test but do run teardown`() {
         val testName = "testFailedSetup"
         val test = FailsToSetup(testName)
-        test.run(TestResults())
+        val results = TestResults()
+        if (test.theSetUp()) {
+            test.runAndLogTest(results)
+        }
+        test.theTearDown()
+        test.logToResults(results)
         assertFalse(test.log.contains(testName))
         assertTrue(test.log.contains("tearDown"))
     }

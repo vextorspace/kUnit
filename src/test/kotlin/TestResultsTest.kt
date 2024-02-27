@@ -2,13 +2,23 @@ import annotations.Test
 import assertions.matchers.shouldBeEqualTo
 import assertions.matchers.shouldBeSimilarTo
 
-class TestResultsTest(testMethodName: String) : TestCase(testMethodName){
+class TestResultsTest(testMethodName: String) : TestCase(testMethodName) {
 
     @Test
     fun `collects logs of all tests run`() {
         val results = TestResults()
-        WasRun("testMethod").run(results)
-        WasRun("testMethod2").run(results)
+        val wasRun = WasRun("testMethod")
+        if (wasRun.theSetUp()) {
+            wasRun.runAndLogTest(results)
+        }
+        wasRun.theTearDown()
+        wasRun.logToResults(results)
+        val wasRun1 = WasRun("testMethod2")
+        if (wasRun1.theSetUp()) {
+            wasRun1.runAndLogTest(results)
+        }
+        wasRun1.theTearDown()
+        wasRun1.logToResults(results)
 
         results.logs.size.shouldBeEqualTo(2)
         if (results.logs[0].contains("testMethod2")) {
@@ -23,7 +33,12 @@ class TestResultsTest(testMethodName: String) : TestCase(testMethodName){
     @Test
     fun `counts number of tests run`() {
         val results = TestResults()
-        WasRun("testMethod").run(results)
+        val wasRun = WasRun("testMethod")
+        if (wasRun.theSetUp()) {
+            wasRun.runAndLogTest(results)
+        }
+        wasRun.theTearDown()
+        wasRun.logToResults(results)
 
         results.summary().shouldBeSimilarTo("1 run 0 failed")
     }
@@ -31,21 +46,36 @@ class TestResultsTest(testMethodName: String) : TestCase(testMethodName){
     @Test
     fun `counts number of tests failed`() {
         val results = TestResults()
-        WasRun("testFailedMethod").run(results)
+        val wasRun = WasRun("testFailedMethod")
+        if (wasRun.theSetUp()) {
+            wasRun.runAndLogTest(results)
+        }
+        wasRun.theTearDown()
+        wasRun.logToResults(results)
         results.summary().shouldBeSimilarTo("1 run 1 failed")
     }
 
     @Test
     fun `counts a failure if exception occurs in setup`() {
         val results = TestResults()
-        FailsToSetup("testFailedSetup").run(results)
+        val failsToSetup = FailsToSetup("testFailedSetup")
+        if (failsToSetup.theSetUp()) {
+            failsToSetup.runAndLogTest(results)
+        }
+        failsToSetup.theTearDown()
+        failsToSetup.logToResults(results)
         results.summary().shouldBeSimilarTo("1 run 1 failed")
     }
 
     @Test
     fun `counts a failure if exception occurs in teardown`() {
         val results = TestResults()
-        FailsToTearDown("testFailedTearDown").run(results)
+        val failsToTearDown = FailsToTearDown("testFailedTearDown")
+        if (failsToTearDown.theSetUp()) {
+            failsToTearDown.runAndLogTest(results)
+        }
+        failsToTearDown.theTearDown()
+        failsToTearDown.logToResults(results)
         results.summary().shouldBeSimilarTo("1 run 1 failed")
     }
 }

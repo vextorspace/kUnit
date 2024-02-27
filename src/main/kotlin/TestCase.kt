@@ -1,25 +1,17 @@
 abstract class TestCase(val testMethodName: String) {
     var log: String = ""
 
-     protected fun theSetUp(): Boolean {
+     fun theSetUp(): Boolean {
          return runAndLog("setup ", ""){setUp()}
      }
 
     open fun setUp() {}
 
-    protected fun theTearDown() {
+    fun theTearDown() {
         runAndLog(" tearDown", ""){tearDown()}
     }
 
     open fun tearDown() {}
-
-    fun run(results: TestResults) {
-        if(theSetUp()) {
-            runAndLogTest(results)
-        }
-        theTearDown()
-        logToResults(results)
-    }
 
     open fun logToResults(results: TestResults) {
         results.logs += log

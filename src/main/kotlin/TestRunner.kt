@@ -1,6 +1,9 @@
 class TestRunner(val testCase: TestCase, val testMethodName: String) {
     fun run(results: TestResults) {
-        testCase.run(results)
+        if (testCase.theSetUp()) {
+            testCase.runAndLogTest(results)
+        }
+        testCase.theTearDown()
+        testCase.logToResults(results)
     }
-
 }

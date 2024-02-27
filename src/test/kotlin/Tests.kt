@@ -1,6 +1,4 @@
-import annotations.Test
 import annotations.TestAnnotationTest
-import annotations.TestFinder
 import assertions.matchers.AssertEqualsTest
 import assertions.matchers.AssertSimilarStringTest
 import assertions.testers.AssertFalseTest
@@ -22,7 +20,11 @@ object Tests {
         suite.addAll(TestAnnotationTest::class.java)
         suite.addAll(TestRunnerTest::class.java)
 
-        suite.run(results)
+        if (suite.theSetUp()) {
+            suite.runAndLogTest(results)
+        }
+        suite.theTearDown()
+        suite.logToResults(results)
 
         results.printResults()
     }
