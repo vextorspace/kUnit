@@ -4,7 +4,7 @@ import TestCase
 import annotations.Test
 import assertions.AssertionFailedException.Companion.shouldFail
 
-class AssertTrueTest(testMethodName: String) : TestCase(testMethodName) {
+class AssertTrueTest : TestCase() {
 
     @Test
     fun `assert true on true passes`() {

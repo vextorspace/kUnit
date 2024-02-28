@@ -3,17 +3,17 @@ import assertions.matchers.shouldBeSimilarTo
 import assertions.testers.FalseTester.Companion.assertFalse
 import assertions.testers.TrueTester.Companion.assertTrue
 
-class TestCaseTest(testMethodName: String): TestCase(testMethodName) {
+class TestCaseTest : TestCase() {
 
     @Test
     fun `was run does not report function has run if it was never called`() {
-        val test = TestRunner(WasRun("testMethod"), "testMethod")
+        val test = TestRunner(WasRun(), "testMethod")
         assertFalse(test.log.contains("testMethod"))
     }
 
     @Test
     fun `test setup run teardown order`() {
-        val test = TestRunner(WasRun("testMethod"), "testMethod")
+        val test = TestRunner(WasRun(), "testMethod")
         val results = TestResults()
         if (test.theSetUp()) {
             test.runAndLogTest(results)
@@ -26,7 +26,7 @@ class TestCaseTest(testMethodName: String): TestCase(testMethodName) {
     @Test
     fun `if setup fails do not run test but do run teardown`() {
         val testName = "testFailedSetup"
-        val test = TestRunner(FailsToSetup(testName), testName)
+        val test = TestRunner(FailsToSetup(), testName)
         val results = TestResults()
         if (test.theSetUp()) {
             test.runAndLogTest(results)

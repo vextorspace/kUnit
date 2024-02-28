@@ -1,6 +1,4 @@
-import assertions.AssertionFailedException
-
-class WasRun(testMethodName: String) : TestCase(testMethodName) {
+class WasRun : TestCase() {
     fun testMethod() {
 
     }

@@ -5,7 +5,7 @@ import annotations.Test
 import assertions.AssertionFailedException
 import assertions.AssertionFailedException.Companion.shouldFail
 
-class AssertSimilarStringTest(testMethodName: String) : TestCase(testMethodName) {
+class AssertSimilarStringTest : TestCase() {
 
     @Test
     fun `same string is similar`() {

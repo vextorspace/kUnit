@@ -1,4 +1,0 @@
-package annotations
-
-class TestFinderTest {
-}

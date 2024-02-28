@@ -1,4 +1,4 @@
-class FailsToSetup(testMethodName: String): TestCase(testMethodName) {
+class FailsToSetup : TestCase() {
 
     override fun setUp() {
         throw RuntimeException("whoops")

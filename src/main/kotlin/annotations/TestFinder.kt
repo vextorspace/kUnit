@@ -20,8 +20,8 @@ class TestFinder<T>(val testClass: Class<T>) {
 
     private fun testCaseFromMethod(method: Method): TestCase? {
         return method.declaringClass
-            .getConstructor(String::class.java)
-            ?.newInstance(method.name)
+            .getConstructor()
+            ?.newInstance()
                 as? TestCase
     }
 
