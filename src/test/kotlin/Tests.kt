@@ -2,6 +2,7 @@ import annotations.TestAnnotationTest
 import assertions.matchers.AssertEqualsTest
 import assertions.matchers.AssertSimilarStringTest
 import assertions.testers.AssertFalseTest
+import assertions.testers.AssertNullTest
 import assertions.testers.AssertTrueTest
 
 object Tests {
@@ -19,6 +20,7 @@ object Tests {
         suite.addAll(TestSuiteTest::class.java)
         suite.addAll(TestAnnotationTest::class.java)
         suite.addAll(TestRunnerTest::class.java)
+        suite.addAll(AssertNullTest::class.java)
 
         suite.runTests(results)
 
