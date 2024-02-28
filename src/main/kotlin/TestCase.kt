@@ -1,27 +1,12 @@
 abstract class TestCase(val testMethodName: String) {
     var log: String = ""
 
-     fun theSetUp(): Boolean {
-         return runAndLog("setup ", ""){setUp()}
-     }
-
     open fun setUp() {}
-
-    fun theTearDown() {
-        runAndLog(" tearDown", ""){tearDown()}
-    }
 
     open fun tearDown() {}
 
     open fun logToResults(results: TestResults) {
         results.logs += log
-    }
-
-    open fun runAndLogTest(results: TestResults) {
-        runAndLog(testMethodName, " passed"){
-            val method = this::class.java.getDeclaredMethod(testMethodName)
-            method.invoke(this)
-        }
     }
 
     private fun runAndLog(label: String, postLabel: String, toRun: () -> Unit ): Boolean {

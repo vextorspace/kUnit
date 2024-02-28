@@ -20,11 +20,7 @@ object Tests {
         suite.addAll(TestAnnotationTest::class.java)
         suite.addAll(TestRunnerTest::class.java)
 
-        if (suite.theSetUp()) {
-            suite.runAndLogTest(results)
-        }
-        suite.theTearDown()
-        suite.logToResults(results)
+        suite.runTests(results)
 
         results.printResults()
     }

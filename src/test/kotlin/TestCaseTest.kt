@@ -7,13 +7,13 @@ class TestCaseTest(testMethodName: String): TestCase(testMethodName) {
 
     @Test
     fun `was run does not report function has run if it was never called`() {
-        val test = WasRun("testMethod")
+        val test = TestRunner(WasRun("testMethod"), "testMethod")
         assertFalse(test.log.contains("testMethod"))
     }
 
     @Test
     fun `test setup run teardown order`() {
-        val test = WasRun("testMethod")
+        val test = TestRunner(WasRun("testMethod"), "testMethod")
         val results = TestResults()
         if (test.theSetUp()) {
             test.runAndLogTest(results)
@@ -26,7 +26,7 @@ class TestCaseTest(testMethodName: String): TestCase(testMethodName) {
     @Test
     fun `if setup fails do not run test but do run teardown`() {
         val testName = "testFailedSetup"
-        val test = FailsToSetup(testName)
+        val test = TestRunner(FailsToSetup(testName), testName)
         val results = TestResults()
         if (test.theSetUp()) {
             test.runAndLogTest(results)

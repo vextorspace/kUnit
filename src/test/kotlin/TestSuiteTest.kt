@@ -7,11 +7,8 @@ class TestSuiteTest(testMethodName: String) : TestCase(testMethodName) {
     fun `empty suite runs no tests`() {
         val results = TestResults()
         val suite = TestSuite()
-        if (suite.theSetUp()) {
-            suite.runAndLogTest(results)
-        }
-        suite.theTearDown()
-        suite.logToResults(results)
+        suite.runTests(results)
+
         results.summary().shouldBeSimilarTo("0 run 0 failed")
     }
 
@@ -30,11 +27,9 @@ class TestSuiteTest(testMethodName: String) : TestCase(testMethodName) {
         val suite: TestSuite = TestSuite()
         suite.add(TestRunner(WasRun("testFailedMethod"), "testFailedMethod"))
         suite.add(TestRunner(WasRun("testMethod"), "testMethod"))
-        if (suite.theSetUp()) {
-            suite.runAndLogTest(results)
-        }
-        suite.theTearDown()
-        suite.logToResults(results)
+
+        suite.runTests(results)
+
         results.summary().shouldBeSimilarTo("2 run 1 failed")
     }
 }

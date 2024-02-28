@@ -7,13 +7,13 @@ class TestResultsTest(testMethodName: String) : TestCase(testMethodName) {
     @Test
     fun `collects logs of all tests run`() {
         val results = TestResults()
-        val wasRun = WasRun("testMethod")
+        val wasRun = TestRunner(WasRun("testMethod"), "testMethod")
         if (wasRun.theSetUp()) {
             wasRun.runAndLogTest(results)
         }
         wasRun.theTearDown()
         wasRun.logToResults(results)
-        val wasRun1 = WasRun("testMethod2")
+        val wasRun1 = TestRunner(WasRun("testMethod2"), "testMethod2")
         if (wasRun1.theSetUp()) {
             wasRun1.runAndLogTest(results)
         }
@@ -33,7 +33,7 @@ class TestResultsTest(testMethodName: String) : TestCase(testMethodName) {
     @Test
     fun `counts number of tests run`() {
         val results = TestResults()
-        val wasRun = WasRun("testMethod")
+        val wasRun = TestRunner(WasRun("testMethod"), "testMethod")
         if (wasRun.theSetUp()) {
             wasRun.runAndLogTest(results)
         }
@@ -46,7 +46,7 @@ class TestResultsTest(testMethodName: String) : TestCase(testMethodName) {
     @Test
     fun `counts number of tests failed`() {
         val results = TestResults()
-        val wasRun = WasRun("testFailedMethod")
+        val wasRun = TestRunner(WasRun("testFailedMethod"), "testFailedMethod")
         if (wasRun.theSetUp()) {
             wasRun.runAndLogTest(results)
         }
@@ -58,7 +58,7 @@ class TestResultsTest(testMethodName: String) : TestCase(testMethodName) {
     @Test
     fun `counts a failure if exception occurs in setup`() {
         val results = TestResults()
-        val failsToSetup = FailsToSetup("testFailedSetup")
+        val failsToSetup = TestRunner(FailsToSetup("testFailedSetup"), "testFailedSetup")
         if (failsToSetup.theSetUp()) {
             failsToSetup.runAndLogTest(results)
         }
@@ -70,7 +70,7 @@ class TestResultsTest(testMethodName: String) : TestCase(testMethodName) {
     @Test
     fun `counts a failure if exception occurs in teardown`() {
         val results = TestResults()
-        val failsToTearDown = FailsToTearDown("testFailedTearDown")
+        val failsToTearDown = TestRunner(FailsToTearDown("testFailedTearDown"), "testFailedTearDown")
         if (failsToTearDown.theSetUp()) {
             failsToTearDown.runAndLogTest(results)
         }
