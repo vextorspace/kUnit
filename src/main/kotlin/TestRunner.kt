@@ -8,8 +8,7 @@ class TestRunner(val testCase: TestCase, val testMethodName: String) {
         theTearDown()
         logToResults(results)
     }
-
-
+    
     fun theSetUp(): Boolean {
         return runAndLog("setup ", ""){testCase.setUp()}
     }
