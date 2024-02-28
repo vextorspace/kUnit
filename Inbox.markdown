@@ -17,7 +17,7 @@
   - ~~assertSimilar for strings~~
   - ~~assertEquals - take out of assertsimilarstringtest~~
   - assertClose for doubles
-  - assertNull
+  - ~~assertNull~~
   - assertNotNull
   - assertContains - take out of TestCaseTest
   - assertStartsWith - take out of TestCaseTest
