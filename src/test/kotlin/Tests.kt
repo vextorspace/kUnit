@@ -5,6 +5,7 @@ import assertions.testers.AssertFalseTest
 import assertions.testers.AssertNotNullTest
 import assertions.testers.AssertNullTest
 import assertions.testers.AssertTrueTest
+import files.FileNameWithoutExtensionTest
 
 object Tests {
     @JvmStatic
@@ -23,6 +24,8 @@ object Tests {
         suite.addAll(TestRunnerTest::class.java)
         suite.addAll(AssertNullTest::class.java)
         suite.addAll(AssertNotNullTest::class.java)
+        suite.addAll(FileNameWithoutExtensionTest::class.java)
+
         suite.runTests(results)
 
         results.printResults()
