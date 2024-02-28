@@ -29,7 +29,16 @@ class FileNameWithoutExtensionTest: TestCase {
     @Test
     fun `file name with extension gives name without extension`() {
         val extension: String = "extension"
-        val file: File = File("randomNameWith.$extension")
-        FileName(file).nameWithoutExtension().shouldBeEqualTo("randomNameWith")
+        val nameWithoutExtension = "randomNameWith"
+        val file: File = File("$nameWithoutExtension.$extension")
+        FileName(file).nameWithoutExtension().shouldBeEqualTo(nameWithoutExtension)
+    }
+
+    @Test
+    fun `file with path does not put path in filename without extension`() {
+        val extension: String = "extension"
+        val nameWithoutExtension = "randomNameWith"
+        val file: File = File("various/path/elements/$nameWithoutExtension.$extension")
+        FileName(file).nameWithoutExtension().shouldBeEqualTo(nameWithoutExtension)
     }
 }
