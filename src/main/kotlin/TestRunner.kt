@@ -3,12 +3,12 @@ class TestRunner(val testCase: TestCase, val testMethodName: String) {
 
     fun run(results: TestResults) {
         if (theSetUp()) {
-            runAndLogTest(results)
+            runTests()
         }
         theTearDown()
-        logToResults(results)
+        writeLogToResults(results)
     }
-    
+
     fun theSetUp(): Boolean {
         return runAndLog("setup ", ""){testCase.setUp()}
     }
@@ -16,11 +16,11 @@ class TestRunner(val testCase: TestCase, val testMethodName: String) {
         runAndLog(" tearDown", ""){testCase.tearDown()}
     }
 
-    open fun logToResults(results: TestResults) {
+    fun writeLogToResults(results: TestResults) {
         results.logs += log
     }
 
-    open fun runAndLogTest(results: TestResults) {
+    fun runTests() {
         runAndLog(testMethodName, " passed"){
             val method = testCase::class.java.getDeclaredMethod(testMethodName)
             method.invoke(testCase)

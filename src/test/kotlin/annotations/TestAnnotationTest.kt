@@ -3,7 +3,7 @@ package annotations
 import TestCase
 import assertions.matchers.shouldBeEqualTo
 
-class TestAnnotationTest : TestCase() {
+class TestAnnotationTest : TestCase {
     @Test
     fun `finds only method in WasRun with Test annotation`() {
         val annotatedTestClass = AnnotatedTest::class.java

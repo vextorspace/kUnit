@@ -28,4 +28,4 @@
 - ~~count setup failure as failure~~
 - ~~count teardown failure as failure~~
 - ~~do not run test if setup fails but still run teardown~~
-- pull tests out of test case, make them inherit an interface
+- ~~pull tests out of test case, make them inherit an interface~~

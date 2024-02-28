@@ -2,23 +2,23 @@ import annotations.Test
 import assertions.matchers.shouldBeEqualTo
 import assertions.matchers.shouldBeSimilarTo
 
-class TestResultsTest : TestCase() {
+class TestResultsTest : TestCase {
 
     @Test
     fun `collects logs of all tests run`() {
         val results = TestResults()
         val wasRun = TestRunner(WasRun(), "testMethod")
         if (wasRun.theSetUp()) {
-            wasRun.runAndLogTest(results)
+            wasRun.runTests()
         }
         wasRun.theTearDown()
-        wasRun.logToResults(results)
+        wasRun.writeLogToResults(results)
         val wasRun1 = TestRunner(WasRun(), "testMethod2")
         if (wasRun1.theSetUp()) {
-            wasRun1.runAndLogTest(results)
+            wasRun1.runTests()
         }
         wasRun1.theTearDown()
-        wasRun1.logToResults(results)
+        wasRun1.writeLogToResults(results)
 
         results.logs.size.shouldBeEqualTo(2)
         if (results.logs[0].contains("testMethod2")) {
@@ -35,10 +35,10 @@ class TestResultsTest : TestCase() {
         val results = TestResults()
         val wasRun = TestRunner(WasRun(), "testMethod")
         if (wasRun.theSetUp()) {
-            wasRun.runAndLogTest(results)
+            wasRun.runTests()
         }
         wasRun.theTearDown()
-        wasRun.logToResults(results)
+        wasRun.writeLogToResults(results)
 
         results.summary().shouldBeSimilarTo("1 run 0 failed")
     }
@@ -48,10 +48,10 @@ class TestResultsTest : TestCase() {
         val results = TestResults()
         val wasRun = TestRunner(WasRun(), "testFailedMethod")
         if (wasRun.theSetUp()) {
-            wasRun.runAndLogTest(results)
+            wasRun.runTests()
         }
         wasRun.theTearDown()
-        wasRun.logToResults(results)
+        wasRun.writeLogToResults(results)
         results.summary().shouldBeSimilarTo("1 run 1 failed")
     }
 
@@ -60,10 +60,10 @@ class TestResultsTest : TestCase() {
         val results = TestResults()
         val failsToSetup = TestRunner(FailsToSetup(), "testFailedSetup")
         if (failsToSetup.theSetUp()) {
-            failsToSetup.runAndLogTest(results)
+            failsToSetup.runTests()
         }
         failsToSetup.theTearDown()
-        failsToSetup.logToResults(results)
+        failsToSetup.writeLogToResults(results)
         results.summary().shouldBeSimilarTo("1 run 1 failed")
     }
 
@@ -72,10 +72,10 @@ class TestResultsTest : TestCase() {
         val results = TestResults()
         val failsToTearDown = TestRunner(FailsToTearDown(), "testFailedTearDown")
         if (failsToTearDown.theSetUp()) {
-            failsToTearDown.runAndLogTest(results)
+            failsToTearDown.runTests()
         }
         failsToTearDown.theTearDown()
-        failsToTearDown.logToResults(results)
+        failsToTearDown.writeLogToResults(results)
         results.summary().shouldBeSimilarTo("1 run 1 failed")
     }
 }

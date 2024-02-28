@@ -1,7 +1,7 @@
 import annotations.Test
 import assertions.matchers.shouldBeSimilarTo
 
-class TestRunnerTest : TestCase() {
+class TestRunnerTest : TestCase {
 
     @Test
     fun `test runner with test case runs`() {

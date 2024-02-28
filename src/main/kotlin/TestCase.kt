@@ -1,7 +1,6 @@
-abstract class TestCase() {
+interface TestCase {
 
-    open fun setUp() {}
+    fun setUp() {}
 
-    open fun tearDown() {}
-
+    fun tearDown() {}
 }

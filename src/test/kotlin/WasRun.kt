@@ -1,4 +1,4 @@
-class WasRun : TestCase() {
+class WasRun : TestCase {
     fun testMethod() {
 
     }

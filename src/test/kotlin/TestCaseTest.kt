@@ -3,7 +3,7 @@ import assertions.matchers.shouldBeSimilarTo
 import assertions.testers.FalseTester.Companion.assertFalse
 import assertions.testers.TrueTester.Companion.assertTrue
 
-class TestCaseTest : TestCase() {
+class TestCaseTest : TestCase {
 
     @Test
     fun `was run does not report function has run if it was never called`() {
@@ -16,10 +16,10 @@ class TestCaseTest : TestCase() {
         val test = TestRunner(WasRun(), "testMethod")
         val results = TestResults()
         if (test.theSetUp()) {
-            test.runAndLogTest(results)
+            test.runTests()
         }
         test.theTearDown()
-        test.logToResults(results)
+        test.writeLogToResults(results)
         test.log.shouldBeSimilarTo("setUp testMethod passed tearDown")
     }
 
@@ -29,10 +29,10 @@ class TestCaseTest : TestCase() {
         val test = TestRunner(FailsToSetup(), testName)
         val results = TestResults()
         if (test.theSetUp()) {
-            test.runAndLogTest(results)
+            test.runTests()
         }
         test.theTearDown()
-        test.logToResults(results)
+        test.writeLogToResults(results)
         assertFalse(test.log.contains(testName))
         assertTrue(test.log.contains("tearDown"))
     }

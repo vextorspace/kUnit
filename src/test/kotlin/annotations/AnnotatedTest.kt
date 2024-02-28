@@ -2,7 +2,7 @@ package annotations
 
 import TestCase
 
-class AnnotatedTest : TestCase() {
+class AnnotatedTest : TestCase {
 
     @Test
     fun annotatedTest() {}

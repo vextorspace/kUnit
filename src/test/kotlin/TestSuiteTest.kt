@@ -2,7 +2,7 @@ import annotations.Test
 import assertions.matchers.shouldBeEqualTo
 import assertions.matchers.shouldBeSimilarTo
 
-class TestSuiteTest : TestCase() {
+class TestSuiteTest : TestCase {
     @Test
     fun `empty suite runs no tests`() {
         val results = TestResults()
