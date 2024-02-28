@@ -1,5 +1,6 @@
 package files
 
+import TestCase
 import java.io.File
 
 class FileName(val file: File) {
@@ -18,6 +19,11 @@ class FileName(val file: File) {
         }
 
         return ""
+    }
+
+    fun findTestCase(): Class<TestCase>? {
+        val classFound = ClassLoader.getSystemClassLoader().loadClass("files.${nameWithoutExtension()}")
+        return classFound as? Class<TestCase>
     }
 
 

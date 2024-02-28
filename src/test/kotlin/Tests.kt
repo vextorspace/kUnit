@@ -5,6 +5,7 @@ import assertions.testers.AssertFalseTest
 import assertions.testers.AssertNotNullTest
 import assertions.testers.AssertNullTest
 import assertions.testers.AssertTrueTest
+import files.FileNameToClassTest
 import files.FileNameWithoutExtensionTest
 
 object Tests {
@@ -25,6 +26,7 @@ object Tests {
         suite.addAll(AssertNullTest::class.java)
         suite.addAll(AssertNotNullTest::class.java)
         suite.addAll(FileNameWithoutExtensionTest::class.java)
+        suite.addAll(FileNameToClassTest::class.java)
 
         suite.runTests(results)
 
