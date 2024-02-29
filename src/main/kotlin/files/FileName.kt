@@ -26,8 +26,17 @@ class FileName(val file: File) {
             return null
         }
 
-        val classFound = ClassLoader.getSystemClassLoader().loadClass("$packageName${nameWithoutExtension()}")
-        return classFound as? Class<TestCase>
+        try {
+            val fullName = if(packageName.isNullOrBlank()) {
+                nameWithoutExtension()
+            } else {
+                "$packageName.${nameWithoutExtension()}"
+            }
+            val classFound = ClassLoader.getSystemClassLoader().loadClass(fullName)
+            return classFound as? Class<TestCase>
+        } catch (ex: Exception){
+            return null
+        }
     }
 
     fun packageIn(sourceSet: String): String? {
@@ -56,6 +65,7 @@ class FileName(val file: File) {
         if(filePath.startsWith(sourceSetPath).not()) {
             return null
         }
-        return filePath.substringAfter(sourceSetPath ?: "").substringBeforeLast("/")
+        return filePath.substringAfter(sourceSetPath ?: "")
+
     }
 }

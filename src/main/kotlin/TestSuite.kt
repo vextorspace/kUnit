@@ -27,15 +27,12 @@ class TestSuite {
         if(file.isDirectory) {
             file.listFiles().forEach { addAllIn(File(packageRoot).absolutePath, it.absolutePath) }
         } else {
-            val packageName = FileName(file).packageIn(packageRoot)?.let {
-                it + "."
-            } ?: ""
+            val packageName = FileName(file).packageIn(packageRoot) ?: ""
 
             val testCaseClass: Class<TestCase>? = FileName(file).findTestCase(packageName)
             testCaseClass?.let {
-                testRunners.addAll(TestFinder<TestCase>(it).findTests())
+                testRunners.addAll(TestFinder(it).findTests())
             }
-            testRunners.addAll(TestFinder<TestRunner>(TestRunner::class.java).findTests())
         }
     }
 }

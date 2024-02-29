@@ -15,14 +15,7 @@ object Tests {
 
         val suite = TestSuite()
 
-        suite.addAllIn("src/test/kotlin/", "src/test/kotlin/annotations")
-        suite.addAllIn("src/test/kotlin/", "src/test/kotlin/assertions")
-        suite.addAllIn("src/test/kotlin/", "src/test/kotlin/files")
-        suite.addAll(TestCaseTest::class.java)
-        suite.addAll(TestResultsTest::class.java)
-        suite.addAll(TestSuiteTest::class.java)
-        suite.addAll(TestRunnerTest::class.java)
-
+        suite.addAllIn("src/test/kotlin", "src/test/kotlin")
         suite.runTests(results)
 
         results.printResults()

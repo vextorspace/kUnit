@@ -1,6 +1,7 @@
 import annotations.Test
 import assertions.matchers.shouldBeEqualTo
 import assertions.matchers.shouldBeSimilarTo
+import assertions.testers.TrueTester.Companion.assertTrue
 
 class TestSuiteTest : TestCase {
     @Test
@@ -38,5 +39,12 @@ class TestSuiteTest : TestCase {
         val suite = TestSuite()
         suite.addAllIn("src/test/kotlin/","src/test/kotlin/suitetest/")
         suite.testRunners().size.shouldBeEqualTo(3)
+    }
+
+    @Test
+    fun `when sourceSet and package root are the same, tests are still found`() {
+        val suite = TestSuite()
+        suite.addAllIn("src/test/kotlin/", "src/test/kotlin/")
+        assertTrue(suite.testRunners().map { it.testCase::class.java.name }.containsAll(listOf("TestSuiteTest", "TestRunnerTest", "TestResultsTest", "TestCaseTest", "suitetest.Test1", "suitetest.Test2")))
     }
 }
