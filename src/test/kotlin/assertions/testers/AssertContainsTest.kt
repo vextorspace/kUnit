@@ -3,9 +3,7 @@ package assertions.testers
 import TestCase
 import WasRun
 import annotations.Test
-import assertions.AssertionFailedException.Companion.shouldFail
 import assertions.AssertionFailedException.Companion.shouldFailWithMessage
-import assertions.matchers.shouldBeEqualTo
 
 class AssertContainsTest: TestCase {
 
@@ -13,7 +11,7 @@ class AssertContainsTest: TestCase {
     fun `collection with an object contains that object by reference`() {
         val theObject = WasRun()
         val collection = listOf(theObject)
-        AssertContains(collection, theObject).test()
+        collection.shouldContain(theObject)
     }
 
     @Test
@@ -21,7 +19,7 @@ class AssertContainsTest: TestCase {
         val theObject = "Fred"
         val collection = listOf("Bob", "Wilma")
         shouldFailWithMessage("[Fred] was not found in {Bob, Wilma}") {
-            AssertContains(collection, theObject).test()
+            collection.shouldContain(theObject)
         }
     }
 
@@ -29,7 +27,7 @@ class AssertContainsTest: TestCase {
     fun `collection with same value object suceeds`() {
         val theObject = TheRecord("Fred")
         val collection: List<TheRecord> = listOf(TheRecord("Bob"), TheRecord("Wilma"), TheRecord("Fred"))
-        AssertContains(collection, theObject).test()
+        collection.shouldContain(theObject)
     }
 
     @Test
@@ -38,7 +36,7 @@ class AssertContainsTest: TestCase {
         val collection: List<TheRecord> = listOf(TheRecord("Bob"), TheRecord("Wilma"), TheRecord("Fred"))
 
         shouldFailWithMessage("[null] was not found in {Bob, Wilma, Fred}") {
-            AssertContains(collection, theObject).test()
+            collection.shouldContain(theObject)
         }
     }
 
