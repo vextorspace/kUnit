@@ -5,7 +5,7 @@ import WasRun
 import annotations.Test
 import assertions.AssertionFailedException.Companion.shouldFailWithMessage
 
-class AssertContainsTest: TestCase {
+class AssertCollectionContainsTest: TestCase {
 
     @Test
     fun `collection with an object contains that object by reference`() {

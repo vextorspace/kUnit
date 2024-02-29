@@ -19,6 +19,7 @@
   - ~~assertClose for doubles~~
   - ~~assertNull~~
   - ~~assertNotNull~~
+  - ~~assertContains for list~~
   - assertContains - take out of TestCaseTest
   - assertStartsWith - take out of TestCaseTest
   - assertHasSize - remove from TestSummaryTest

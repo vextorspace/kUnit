@@ -1,9 +1,9 @@
 package assertions.testers
 
 import assertions.Assertion
-import assertions.testers.AssertContains.Companion.assertContains
+import assertions.testers.AssertCollectionContains.Companion.assertContains
 
-class AssertContains(val collection: Collection<Any>, val theObject: Any?): Assertion() {
+class AssertCollectionContains(val collection: Collection<Any>, val theObject: Any?): Assertion() {
     override fun test() {
         if(collection.contains(theObject).not()) {
             throwException(errorMessage())
@@ -17,7 +17,7 @@ class AssertContains(val collection: Collection<Any>, val theObject: Any?): Asse
 
     companion object {
         fun assertContains(collection: Collection<Any>, theObject: Any?) {
-            AssertContains(collection, theObject).test()
+            AssertCollectionContains(collection, theObject).test()
         }
     }
 }
