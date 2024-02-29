@@ -31,8 +31,32 @@ class FileName(val file: File) {
     }
 
     fun packageIn(sourceSet: String): String? {
-        
+        return stripFirstAndLastFileSep(subPath(sourceSet, file.parentFile))?.replace(File.separator, ".")
     }
 
+    private fun stripFirstAndLastFileSep(path: String?): String? {
+        if(path == null) {
+            return null
+        }
+
+        var newPath = path
+        if(newPath.startsWith(File.separator)) {
+            newPath = newPath.drop(1)
+        }
+
+        if(newPath.endsWith(File.separator)) {
+            newPath = newPath.dropLast(1)
+        }
+        return newPath
+    }
+
+    fun subPath(sourceSet: String, subFile: File): String? {
+        val sourceSetPath = File(sourceSet).absolutePath
+        val filePath = subFile.absolutePath
+        if(filePath.startsWith(sourceSetPath).not()) {
+            return null
+        }
+        return filePath.substringAfter(sourceSetPath ?: "").substringBeforeLast("/")
+    }
 
 }
