@@ -31,4 +31,5 @@
 - ~~pull tests out of test case, make them inherit an interface~~
 - get class from filename
   - ~~get filename without extension~~
-  - get package from sourceSet and file 
+  - ~~get package from sourceSet and file~~
+  - make it work when package root is source root"
