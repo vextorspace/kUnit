@@ -22,8 +22,16 @@ class FileName(val file: File) {
     }
 
     fun findTestCase(): Class<TestCase>? {
+        if(file.isDirectory || file.exists().not()) {
+            return null
+        }
+
         val classFound = ClassLoader.getSystemClassLoader().loadClass("files.${nameWithoutExtension()}")
         return classFound as? Class<TestCase>
+    }
+
+    fun packageIn(sourceSet: String): String? {
+        
     }
 
 
