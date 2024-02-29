@@ -2,13 +2,13 @@
 - ~~Invoke setup first~~
 - ~~Invoke teardown afterward~~
 - ~~Invoke teardown even if the test method fails~~
-- run multiple tests without specifying them all in a file
+- ~~run multiple tests without specifying them all in a file~~
   - ~~run a suite of tests~~
   - ~~find all methods in a class with Test annotation and run them~~
     - ~~find all methods in a class with Test annotation~~
-  - find all classes in a dir ending in Test and run all tests in them
-    - find all classes in a dir ending in Test 
-  - make a runner TestRunner that runs all in a dir or a single test
+  - ~~find all classes in a dir ending in Test and run all tests in them~~
+  - ~~make a runner TestRunner that runs all in a dir or a single test~~
+  - integrate into gradle and intellij
 - ~~report collected results~~!
 - assertion that throws exception without jvm options
   - ~~assertTrue~~
@@ -29,7 +29,7 @@
 - ~~count teardown failure as failure~~
 - ~~do not run test if setup fails but still run teardown~~
 - ~~pull tests out of test case, make them inherit an interface~~
-- get class from filename
+- ~~get class from filename~~
   - ~~get filename without extension~~
   - ~~get package from sourceSet and file~~
-  - make it work when package root is source root"
+  - ~~make it work when package root is source root"~~
