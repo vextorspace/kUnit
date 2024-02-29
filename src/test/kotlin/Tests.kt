@@ -14,19 +14,14 @@ object Tests {
         val results = TestResults()
 
         val suite = TestSuite()
+
+        suite.addAllIn("src/test/kotlin/", "src/test/kotlin/annotations")
+        suite.addAllIn("src/test/kotlin/", "src/test/kotlin/assertions")
+        suite.addAllIn("src/test/kotlin/", "src/test/kotlin/files")
         suite.addAll(TestCaseTest::class.java)
-        suite.addAll(AssertTrueTest::class.java)
-        suite.addAll(AssertFalseTest::class.java)
-        suite.addAll(AssertSimilarStringTest::class.java)
-        suite.addAll(AssertEqualsTest::class.java)
         suite.addAll(TestResultsTest::class.java)
         suite.addAll(TestSuiteTest::class.java)
-        suite.addAll(TestAnnotationTest::class.java)
         suite.addAll(TestRunnerTest::class.java)
-        suite.addAll(AssertNullTest::class.java)
-        suite.addAll(AssertNotNullTest::class.java)
-        suite.addAll(FileNameWithoutExtensionTest::class.java)
-        suite.addAll(FileNameToClassTest::class.java)
 
         suite.runTests(results)
 

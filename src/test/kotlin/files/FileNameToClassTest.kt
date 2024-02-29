@@ -11,13 +11,13 @@ class FileNameToClassTest: TestCase {
 
     @Test
     fun `does not find the class if the file does not exist`() {
-        val thisClassFound = FileName(File("src/test/kotlin/FileNameToClassTest.kt")).findTestCase()
+        val thisClassFound = FileName(File("src/test/kotlin/FileNameToClassTest.kt")).findTestCase("")
         (thisClassFound as? Class<FileNameToClassTest>).shouldBeNull()
     }
 
     @Test
     fun `can find this test`() {
-        val thisClassFound = FileName(File("src/test/kotlin/files/FileNameToClassTest.kt")).findTestCase()
+        val thisClassFound = FileName(File("src/test/kotlin/files/FileNameToClassTest.kt")).findTestCase("files.")
         (thisClassFound as? Class<FileNameToClassTest>).shouldNotBeNull()
     }
 

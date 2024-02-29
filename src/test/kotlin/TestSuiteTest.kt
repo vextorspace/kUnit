@@ -32,4 +32,11 @@ class TestSuiteTest : TestCase {
 
         results.summary().shouldBeSimilarTo("2 run 1 failed")
     }
+
+    @Test
+    fun `given a sourceset, all tests within are added`() {
+        val suite = TestSuite()
+        suite.addAllIn("src/test/kotlin/","src/test/kotlin/suitetest/")
+        suite.testRunners().size.shouldBeEqualTo(3)
+    }
 }

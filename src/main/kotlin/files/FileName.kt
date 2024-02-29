@@ -21,12 +21,12 @@ class FileName(val file: File) {
         return ""
     }
 
-    fun findTestCase(): Class<TestCase>? {
+    fun findTestCase(packageName: String): Class<TestCase>? {
         if(file.isDirectory || file.exists().not()) {
             return null
         }
 
-        val classFound = ClassLoader.getSystemClassLoader().loadClass("files.${nameWithoutExtension()}")
+        val classFound = ClassLoader.getSystemClassLoader().loadClass("$packageName${nameWithoutExtension()}")
         return classFound as? Class<TestCase>
     }
 
@@ -50,7 +50,7 @@ class FileName(val file: File) {
         return newPath
     }
 
-    fun subPath(sourceSet: String, subFile: File): String? {
+    private fun subPath(sourceSet: String, subFile: File): String? {
         val sourceSetPath = File(sourceSet).absolutePath
         val filePath = subFile.absolutePath
         if(filePath.startsWith(sourceSetPath).not()) {
@@ -58,5 +58,4 @@ class FileName(val file: File) {
         }
         return filePath.substringAfter(sourceSetPath ?: "").substringBeforeLast("/")
     }
-
 }
