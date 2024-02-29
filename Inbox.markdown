@@ -30,4 +30,5 @@
 - ~~do not run test if setup fails but still run teardown~~
 - ~~pull tests out of test case, make them inherit an interface~~
 - get class from filename
-- get filename without extension
+  - ~~get filename without extension~~
+  - ~~get package from sourceSet and file 
