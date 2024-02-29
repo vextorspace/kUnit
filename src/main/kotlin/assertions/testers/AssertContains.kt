@@ -4,7 +4,9 @@ import assertions.Assertion
 
 class AssertContains(val collection: List<Any>, val theObject: Any?): Assertion() {
     override fun test() {
-
+        if(collection.contains(theObject).not()) {
+            throwException(errorMessage())
+        }
     }
 
     override fun errorMessage(): String {
