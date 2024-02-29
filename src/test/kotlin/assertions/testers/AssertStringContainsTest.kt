@@ -3,23 +3,24 @@ package assertions.testers
 import TestCase
 import annotations.Test
 import assertions.AssertionFailedException.Companion.shouldFailWithMessage
+import assertions.testers.AssertStringContains.Companion.assertContains
 
 class AssertStringContainsTest: TestCase {
 
     @Test
     fun `string contains itself`() {
-        AssertStringContains("::Any Old String::", "::Any Old String::").test()
+        "::Any Old String::".shouldContain("::Any Old String::")
     }
 
     @Test
     fun `string contains a single letter in it`() {
-        AssertStringContains("::Any Old String::", "O").test()
+        "::Any Old String::".shouldContain("O")
     }
 
     @Test
     fun `string does not contain some other string`() {
         shouldFailWithMessage("[XYZ] was not found in [::Any Old String::]"){
-            AssertStringContains("::Any Old String::", "XYZ").test()
+            "::Any Old String::".shouldContain("XYZ")
         }
     }
 }
