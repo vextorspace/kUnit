@@ -14,6 +14,11 @@
   - ~~assertTrue~~
   - ~~assertFalse~~
   - ~~assertEquals~~
+  - assertGreaterThan
+  - assertGreaterThanOrEqual
+  - assertLessThan
+  - assertLessThanOrEqual
+  - assertNotEqual
   - ~~assertSimilar for strings~~
   - ~~assertEquals - take out of assertsimilarstringtest~~
   - ~~assertClose for doubles~~
@@ -23,6 +28,7 @@
   - ~~assertContains - take out of TestCaseTest*~~
   - assertNotContains - take out of TestCaseTest*
   - assertStartsWith - take out of TestCaseTest
+  - assertEndsWith
   - assertHasSize - remove from TestSummaryTest
 - ~~tell us how many pass and fail~~
   - ~~count how many run~~ 
@@ -34,4 +40,5 @@
 - ~~get class from filename~~
   - ~~get filename without extension~~
   - ~~get package from sourceSet and file~~
-  - ~~make it work when package root is source root"~~
+  - ~~make it work when pacage root is source root"~~
+- separate out test from throwing exception in assertions
