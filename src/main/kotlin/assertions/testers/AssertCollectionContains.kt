@@ -4,10 +4,8 @@ import assertions.Assertion
 import assertions.testers.AssertCollectionContains.Companion.assertContains
 
 class AssertCollectionContains(val collection: Collection<Any>, val theObject: Any?): Assertion() {
-    override fun test() {
-        if(collection.contains(theObject).not()) {
-            throwException(errorMessage())
-        }
+    override fun check(): Boolean {
+        return collection.contains(theObject)
     }
 
     override fun errorMessage(): String {

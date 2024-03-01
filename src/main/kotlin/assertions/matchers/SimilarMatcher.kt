@@ -4,14 +4,8 @@ import assertions.Assertion
 import java.lang.Character.isLetterOrDigit
 
 class SimilarMatcher(val expected: String?, val actual: String?) : Assertion() {
-    override fun test() {
-        if (checkIfSimilar(actual, expected)) {
-            throwException(errorMessage())
-        }
-    }
-
-    private fun checkIfSimilar(string1: String?, string2: String?): Boolean {
-        return reduceStringToImportantBits(string1) != reduceStringToImportantBits(string2)
+    override fun check(): Boolean {
+        return reduceStringToImportantBits(actual) == reduceStringToImportantBits(expected)
     }
 
     private fun reduceStringToImportantBits(string1: String?): String? {

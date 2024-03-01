@@ -4,10 +4,8 @@ import assertions.Assertion
 import assertions.testers.AssertNull.Companion.assertNull
 
 class AssertNull(val expression: Any?): Assertion() {
-    override fun test() {
-        if (expression != null) {
-            throwException(errorMessage())
-        }
+    override fun check(): Boolean {
+        return expression == null
     }
 
     override fun errorMessage(): String {

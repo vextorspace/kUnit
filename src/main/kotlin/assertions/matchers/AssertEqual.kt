@@ -4,10 +4,8 @@ import assertions.Assertion
 
 class AssertEqual(val expected: Any?, val actual: Any?): Assertion() {
 
-    override fun test() {
-        if (expected != actual) {
-            throwException(errorMessage())
-        }
+    override fun check(): Boolean {
+        return expected == actual
     }
 
     override fun errorMessage() : String {

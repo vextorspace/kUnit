@@ -41,4 +41,4 @@
   - ~~get filename without extension~~
   - ~~get package from sourceSet and file~~
   - ~~make it work when pacage root is source root"~~
-- separate out test from throwing exception in assertions
+- ~~separate out test from throwing exception in assertions~~

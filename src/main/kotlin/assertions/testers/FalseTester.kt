@@ -3,14 +3,8 @@ package assertions.testers
 import assertions.Assertion
 
 class FalseTester(val expression: Boolean?) : Assertion() {
-    override fun test() {
-        if(checkForTrueOrNull(expression)) {
-            throwException(errorMessage())
-        }
-    }
-
-    private fun checkForTrueOrNull(expression: Boolean?): Boolean {
-        return expression == null || expression
+    override fun check(): Boolean {
+        return expression != null && !expression
     }
 
     override fun errorMessage(): String {

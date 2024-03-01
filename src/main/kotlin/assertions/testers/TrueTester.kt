@@ -4,14 +4,8 @@ import assertions.Assertion
 
 class TrueTester(val expression: Boolean?): Assertion() {
 
-    override fun test() {
-        if(checkForFalseOrNull(expression)) {
-            throwException(errorMessage())
-        }
-    }
-
-    private fun checkForFalseOrNull(expression: Boolean?): Boolean {
-        return expression == null || expression.not()
+    override fun check(): Boolean {
+        return expression != null && expression
     }
 
     override fun errorMessage(): String {

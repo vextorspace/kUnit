@@ -4,10 +4,8 @@ import assertions.Assertion
 import assertions.testers.AssertStringContains.Companion.assertContains
 
 class AssertStringContains(val theString: String, val toFind: String?): Assertion() {
-    override fun test() {
-        if(toFind.isNullOrBlank() || theString.contains(toFind).not()) {
-            throwException(errorMessage())
-        }
+    override fun check(): Boolean {
+        return !toFind.isNullOrBlank() && theString.contains(toFind)
     }
 
     override fun errorMessage(): String {

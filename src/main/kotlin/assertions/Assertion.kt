@@ -2,7 +2,13 @@ package assertions
 
 abstract class Assertion {
 
-    abstract fun test(): Unit
+    fun test() {
+        if (!check()) {
+            throwException(errorMessage())
+        }
+    }
+
+    abstract fun check(): Boolean
 
     abstract fun errorMessage(): String
 

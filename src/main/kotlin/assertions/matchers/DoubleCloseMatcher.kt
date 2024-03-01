@@ -5,10 +5,8 @@ import assertions.matchers.DoubleCloseMatcher.Companion.assertClose
 import kotlin.math.abs
 
 class DoubleCloseMatcher(val expected: Number, val actual: Number, val tolerance: Number): Assertion() {
-    override fun test() {
-        if(abs(actual.toDouble() - expected.toDouble()) >  tolerance.toDouble()) {
-            throwException(errorMessage())
-        }
+    override fun check(): Boolean {
+        return abs(actual.toDouble() - expected.toDouble()) <= tolerance.toDouble()
     }
 
     override fun errorMessage(): String {
