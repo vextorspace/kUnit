@@ -20,7 +20,8 @@
   - ~~assertNull~~
   - ~~assertNotNull~~
   - ~~assertContains for list~~
-  - assertContains - take out of TestCaseTest
+  - ~~assertContains - take out of TestCaseTest*~~
+  - assertNotContains - take out of TestCaseTest*
   - assertStartsWith - take out of TestCaseTest
   - assertHasSize - remove from TestSummaryTest
 - ~~tell us how many pass and fail~~

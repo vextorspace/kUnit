@@ -2,6 +2,7 @@ import annotations.Test
 import assertions.matchers.shouldBeSimilarTo
 import assertions.testers.FalseTester.Companion.assertFalse
 import assertions.testers.TrueTester.Companion.assertTrue
+import assertions.testers.shouldContain
 
 class TestCaseTest : TestCase {
 
@@ -34,6 +35,6 @@ class TestCaseTest : TestCase {
         test.theTearDown()
         test.writeLogToResults(results)
         assertFalse(test.log.contains(testName))
-        assertTrue(test.log.contains("tearDown"))
+        test.log.shouldContain("tearDown")
     }
 }
