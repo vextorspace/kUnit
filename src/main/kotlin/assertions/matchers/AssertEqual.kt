@@ -2,7 +2,7 @@ package assertions.matchers
 
 import assertions.Assertion
 
-class EqualsMatcher(val expected: Any?, val actual: Any?): Assertion() {
+class AssertEqual(val expected: Any?, val actual: Any?): Assertion() {
 
     override fun test() {
         if (expected != actual) {
@@ -15,13 +15,13 @@ class EqualsMatcher(val expected: Any?, val actual: Any?): Assertion() {
     }
 
     companion object {
-        fun assertEquals(expected: Any?, actual: Any?) {
-            EqualsMatcher(expected, actual).test()
+        fun assertEqual(expected: Any?, actual: Any?) {
+            AssertEqual(expected, actual).test()
         }
     }
 }
 
 fun Any?.shouldBeEqualTo(expected: Any?): Any? {
-    EqualsMatcher.assertEquals(expected, this)
+    AssertEqual.assertEqual(expected, this)
     return this
 }

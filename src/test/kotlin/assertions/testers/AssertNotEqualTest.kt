@@ -2,9 +2,8 @@ package assertions.testers
 
 import TestCase
 import annotations.Test
-import assertions.AssertionFailedException.Companion.shouldFail
 import assertions.AssertionFailedException.Companion.shouldFailWithMessage
-import assertions.testers.AssertNotEqual.Companion.assertNotEqual
+import assertions.matchers.shouldNotEqualTo
 
 class AssertNotEqualTest: TestCase {
 
@@ -13,24 +12,24 @@ class AssertNotEqualTest: TestCase {
         val actual = TheRecord("Fred")
         val expected = actual
         shouldFailWithMessage("[$actual] should not have been equal to [$expected]") {
-            actual.shouldNotEqual(expected)
+            actual.shouldNotEqualTo(expected)
         }
     }
 
     @Test
     fun `null value and non-null expected passes`() {
-        null.shouldNotEqual("Hello")
+        null.shouldNotEqualTo("Hello")
     }
 
     @Test
     fun `null expected and non-null actual passes`() {
-        "hello".shouldNotEqual(null)
+        "hello".shouldNotEqualTo(null)
     }
 
     @Test
     fun `both null fails`() {
         shouldFailWithMessage("[null] should not have been equal to [null]") {
-            null.shouldNotEqual(null)
+            null.shouldNotEqualTo(null)
         }
     }
 

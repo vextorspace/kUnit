@@ -1,7 +1,7 @@
-package assertions.testers
+package assertions.matchers
 
 import assertions.Assertion
-import assertions.testers.AssertNotEqual.Companion.assertNotEqual
+import assertions.matchers.AssertNotEqual.Companion.assertNotEqual
 
 class AssertNotEqual(val expected: Any?, val actual: Any?): Assertion() {
     override fun test() {
@@ -21,6 +21,6 @@ class AssertNotEqual(val expected: Any?, val actual: Any?): Assertion() {
     }
 }
 
-fun Any?.shouldNotEqual(expected: Any?) {
+fun Any?.shouldNotEqualTo(expected: Any?) {
     assertNotEqual(expected, this)
 }
